@@ -1,0 +1,24 @@
+<div class="account">
+  <form name="signup" ng-submit="action.signup()">
+    <div class="window">
+      <div class="header">
+        <img src="/assets/images/logos/form-white.svg">
+      </div>
+      <div class="container">
+        <label>
+          <span>Full Name</span>
+          <input type="text" ng-model="input.name" placeholder="John Smith" spellcheck="false" />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" ng-model="input.email" placeholder="john.smith@example.com" spellcheck="false" />
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" ng-model="input.password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+        </label>
+        <span class="actions"><button type="submit">Sign Up</button> or <a ng-click="action.goto('/account/login')">login</a></span>
+      </div>
+    </div>
+  </form>
+</div>

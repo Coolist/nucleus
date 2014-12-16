@@ -1,0 +1,9 @@
+{
+  "server": "development",
+  "database": {
+    "mongodb": {
+      "name": "nucleus",
+      "server": "localhost"
+    }
+  }
+}

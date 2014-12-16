@@ -1,0 +1,44 @@
+body, html, .nucleus-app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #E7E7E7;
+}
+
+a {
+  color: #6AA9D1;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.loading {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  top: 20px;
+  left: 20px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  animation: loading-spinner linear 1s infinite;
+  
+  &.show {
+    opacity: 1;
+  }
+}
+
+@keyframes loading-spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,128 @@
+.account {
+  text-align: center;
+  height: 100%;
+
+  & * {
+    box-sizing: border-box;
+  }
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em;
+  }
+
+  form {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 20px;
+    width: calc(100% - 4px);
+  }
+
+  .window {
+    margin: auto;
+    text-align: left;
+    border-radius: 4px;
+    background-color: #FFF;
+    max-width: 340px;
+    box-shadow: 0px 1px 5px rgba(#C4C4C4, 0.5);
+  }
+
+  .container {
+    padding: 14px 30px 20px 30px;
+  }
+
+  .header {
+    background-color: #82BBDF;
+    text-align: center;
+    padding: 26px 20px 20px 20px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border: 1px solid #77ACCB;
+
+    img {
+      max-width: 43px;
+      height: 43px;
+    }
+  }
+
+  label {
+    display: block;
+    margin: 0.5em 0;
+
+    & > span {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #767676;
+      text-transform: uppercase;
+      padding-left: 5px;
+    }
+  }
+
+  input {
+    width: 100%;
+    border: 5px solid #E1E1E1;
+    border-radius: 4px;
+    padding: 0.6em;
+    font-size: 14px;
+    outline: none;
+    margin: 0.25em 0;
+    color: #565656;
+    background-color: #FFF;
+
+    &:focus {
+      border-color: #ABDBF5;   
+    }
+  }
+
+  button {
+    background-color: #82BBDF;
+    border: 1px solid #77ACCB;
+    border-bottom-width: 2px;
+    color: #FFF;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 0.8em 1.4em;
+    cursor: pointer;
+    line-height: 1;
+    margin: 0.5em 0.2em 0.5em 0;
+    outline: none;
+    text-shadow: 0px 0px 3px #77ACCB;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background-color: #7EB7D7;
+    }
+  }
+
+  .actions {
+    font-size: 14px;
+    color: #B0B0B0;
+    
+    a {
+      color: #6A6A6A;
+      text-decoration: none;
+        
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .success {
+    background-color: #78CF6D;
+    margin: 1em 0;
+    font-size: 14px;
+    padding: 1em;
+    border-radius: 4px;
+    color: #FFF;
+    border: 1px solid #61A858;
+    text-shadow: 0px 0px 3px #61A858;
+    
+    display: none;
+  }
+}
