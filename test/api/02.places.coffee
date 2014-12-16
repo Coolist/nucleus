@@ -12,9 +12,9 @@ if config.environment is not 'development'
 api = 'http://localhost:3000/api/1'
 
 describe 'Projects', () ->
-  it 'should create a project', (done) ->
+  it 'should create a place', (done) ->
     request api
-      .post '/projects'
+      .post '/places'
       .send
         name: 'Test Project'
       .end (e, res) ->
@@ -23,9 +23,9 @@ describe 'Projects', () ->
         res.body.id.length.should.be.above 1
     done()
 
-  it 'should not create a project when name is blank', (done) ->
+  it 'should not create a place when name is blank', (done) ->
     request api
-      .post '/projects'
+      .post '/places'
       .send
         name: undefined
       .end (e, res) ->
@@ -33,29 +33,29 @@ describe 'Projects', () ->
         res.body.success.should.equal false
         done()
 
-  it 'should get all projects as well as a single project by id', (done) ->
+  it 'should get all places as well as a single place by id', (done) ->
     request api
-      .get '/projects'
+      .get '/places'
       .end (e, res) ->
         res.status.should.equal 200
         res.body.length.should.be.above 0
         res.body[0].id.length.should.be.above 1
 
         request api
-          .get '/projects/' + res.body[0].id
+          .get '/places/' + res.body[0].id
           .end (e, res) ->
             res.status.should.equal 200
             res.body.id.length.should.be.above 0
             done()
 
-  it 'should update a project by id', (done) ->
+  it 'should update a place by id', (done) ->
     request api
-      .get '/projects'
+      .get '/places'
       .end (e, res) ->
-        projectId = res.body[0].id
+        placeId = res.body[0].id
 
         request api
-          .put '/projects/' + projectId
+          .put '/places/' + placeId
           .send
             name: 'Renamed Test Project'
           .end (e, res) ->
@@ -63,26 +63,26 @@ describe 'Projects', () ->
             res.body.success.should.equal true
 
             request api
-              .get '/projects/' + projectId
+              .get '/places/' + placeId
               .end (e, res) ->
                 res.body.name.should.equal 'Renamed Test Project'
                 done()
 
-  it 'should delete a project by id', (done) ->
+  it 'should delete a place by id', (done) ->
     request api
-      .get '/projects'
+      .get '/places'
       .end (e, res) ->
 
-        projectId = res.body[0].id
+        placeId = res.body[0].id
 
         request api
-          .delete '/projects/' + projectId
+          .delete '/places/' + placeId
           .end (e, res) ->
             res.status.should.equal 200
             res.body.success.should.equal true
 
             request api
-              .get '/projects/' + projectId
+              .get '/places/' + placeId
               .end (e, res) ->
                 res.status.should.equal 404
                 done()

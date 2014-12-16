@@ -1,8 +1,8 @@
 api = require '../api'
 
-projectsResource = ($resource) ->
-  return $resource api.config.endpoint + '/projects/:projectId',
-    projectId: '@projectId',
+placesResource = ($resource) ->
+  return $resource api.config.endpoint + '/places/:placeId',
+    placeId: '@placeId',
     auth: true
   ,
     query:
@@ -20,5 +20,5 @@ projectsResource = ($resource) ->
 
 module.exports = [
   '$resource',
-  projectsResource
+  placesResource
 ]

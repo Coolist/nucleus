@@ -12,7 +12,7 @@ components = [
   require './common/authentication'
   require './common/accesses'
   require './account'
-  require './projects'
+  require './places'
 ]
 
 dependencies = [
@@ -37,10 +37,10 @@ app.config ($routeProvider) ->
       controller: 'accountCtrl'
       templateUrl: 'account/signup/view.html'
     .when '/places',
-      controller: 'projectsCtrl'
-      templateUrl: 'projects/view.html'
+      controller: 'placesCtrl'
+      templateUrl: 'places/view.html'
     .when '/places/:placeId',
-      templateUrl: 'projects/view.html'
+      templateUrl: 'places/view.html'
     .otherwise
       redirectTo: '/places'
 

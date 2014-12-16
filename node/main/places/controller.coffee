@@ -9,7 +9,7 @@ check = require '../authentication/check'
 # Helpers
 errors = require '../helpers/errors.coffee'
 
-# GET Project by ID
+# GET Place by ID
 exports.getOne = (req, res) ->
 
   check.permissions req, 1
@@ -22,7 +22,7 @@ exports.getOne = (req, res) ->
     errors.send error, res
   .done()
 
-# GET projects (shared with user)
+# GET places (shared with user)
 exports.get = (req, res) ->
 
   Q.fcall () ->
@@ -34,7 +34,7 @@ exports.get = (req, res) ->
     errors.send error, res
   .done()
   
-# POST new projects
+# POST new places
 exports.post = (req, res) ->
 
   Q.fcall () ->
@@ -44,14 +44,14 @@ exports.post = (req, res) ->
   .then (id) ->
     res.send
       success: true
-      messages: [ 'Project successfully created.' ]
+      messages: [ 'Place successfully created.' ]
       id: id
     , 200
   .fail (error) ->
     errors.send error, res
   .done()
 
-# UPDATE project by ID
+# UPDATE place by ID
 exports.update = (req, res) ->
 
   check.permissions req, 2
@@ -62,13 +62,13 @@ exports.update = (req, res) ->
   .then () ->
     res.send
       success: true
-      messages: [ 'Project successfully updated.' ]
+      messages: [ 'Place successfully updated.' ]
     , 200
   .fail (error) ->
     errors.send error, res
   .done()
 
-# DELETE project by ID
+# DELETE place by ID
 exports.delete = (req, res) ->
 
   check.permissions req, 3
@@ -78,7 +78,7 @@ exports.delete = (req, res) ->
   .then (response) ->
     res.send
       success: true
-      messages: [ 'Project successfully deleted.' ]
+      messages: [ 'Place successfully deleted.' ]
   .fail (error) ->
     errors.send error, res
   .done()

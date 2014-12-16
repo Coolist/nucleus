@@ -38,7 +38,7 @@ exports.request = (token) ->
         id: account._id
         name: account.name
         email: account.email
-        projects: account.projects || undefined
+        places: account.places || undefined
         password: account.password
     else
       deferred.reject new Error errors.build 'Invalid authentication request token.', 401
@@ -46,13 +46,13 @@ exports.request = (token) ->
   return deferred.promise
 
 # Check access permissions
-exports.tokenPermissions = (token, project, permission, error) ->
+exports.tokenPermissions = (token, place, permission, error) ->
 
   return exports.request token
   .then (account) ->
-    if account.projects?
-      for p in account.projects
-        if p.project is project
+    if account.places?
+      for p in account.places
+        if p.place is place
           role = convertPermission p.role
 
           if role >= permission
@@ -60,11 +60,11 @@ exports.tokenPermissions = (token, project, permission, error) ->
 
     throw new Error errors.build error || 'You do not have the correct permissions to access this resource.', 401
 
-# Get permissions of a project from an array of projects
-exports.getPermissions = (projects, projectId) ->
+# Get permissions of a place from an array of places
+exports.getPermissions = (places, placeId) ->
 
-  for p in projects
-    if p.project is projectId
+  for p in places
+    if p.place is placeId
       return convertPermission p.role
 
   return 0
@@ -73,12 +73,12 @@ exports.getPermissions = (projects, projectId) ->
 exports.permissions = (req, permission, error) ->
   deferred = Q.defer()
 
-  if not req.query.token? or not (req.params.projectId? or req.params.id?)
+  if not req.query.token? or not (req.params.placeId? or req.params.id?)
     deferred.reject new Error errors.build 'Invalid authentication request token.', 401
 
-  project = req.params.projectId || req.params.id
+  place = req.params.placeId || req.params.id
   
-  exports.tokenPermissions req.query.token, project, permission, error
+  exports.tokenPermissions req.query.token, place, permission, error
   .then (valid) ->
     deferred.resolve valid
   .fail (error) ->

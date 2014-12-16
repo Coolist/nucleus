@@ -80,7 +80,7 @@ exports.create = (params) ->
         name: params.name
         email: params.email
         password: params.password
-        projects: []
+        places: []
 
   .then (object) ->
     return object

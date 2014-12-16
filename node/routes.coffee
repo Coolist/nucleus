@@ -6,7 +6,7 @@ module.exports = (app, router) ->
   # Load Controllers
   authentication = require './main/authentication/controller'
   accesses = require './main/accesses/controller'
-  project = require './main/projects/controller'
+  place = require './main/places/controller'
 
   pre = '/api/1/'
 
@@ -22,17 +22,17 @@ module.exports = (app, router) ->
   router.post pre + 'authentication/reset', authentication.postReset
 
   # Projects
-  router.get pre + 'projects/:projectId/users', accesses.get
-  router.post pre + 'projects/:projectId/users', accesses.post
-  router.put pre + 'projects/:projectId/users/:userId', accesses.update
-  router.delete pre + 'projects/:projectId/users/:userId', accesses.delete
+  router.get pre + 'places/:placeId/users', accesses.get
+  router.post pre + 'places/:placeId/users', accesses.post
+  router.put pre + 'places/:placeId/users/:userId', accesses.update
+  router.delete pre + 'places/:placeId/users/:userId', accesses.delete
 
   # Project access
-  router.get pre + 'projects/:id', project.getOne
-  router.get pre + 'projects', project.get
-  router.post pre + 'projects', project.post
-  router.put pre + 'projects/:id', project.update
-  router.delete pre + 'projects/:id', project.delete
+  router.get pre + 'places/:id', place.getOne
+  router.get pre + 'places', place.get
+  router.post pre + 'places', place.post
+  router.put pre + 'places/:id', place.update
+  router.delete pre + 'places/:id', place.delete
 
   # Allow all origins for API
   app.use (req, res, next) ->

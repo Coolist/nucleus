@@ -1,8 +1,8 @@
 api = require '../api'
 
 accessResource = ($resource) ->
-  return $resource api.config.endpoint + '/projects/:projectId/users/:userId',
-    projectId: '@projectId',
+  return $resource api.config.endpoint + '/places/:placeId/users/:userId',
+    placeId: '@placeId',
     userId: '@userId'
     auth: true
   ,

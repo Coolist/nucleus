@@ -12,10 +12,10 @@ errors = require '../helpers/errors.coffee'
 # GET accesses
 exports.get = (req, res) ->
   
-  check.permissions req, 1, 'You must have viewer permissions to view users who have access to this project.'
+  check.permissions req, 1, 'You must have viewer permissions to view users who have access to this place.'
   .then () ->
     model.get
-      projectId: req.params.projectId
+      placeId: req.params.placeId
   .then (accounts) ->
     res.send accounts
     , 200
@@ -34,7 +34,7 @@ exports.post = (req, res) ->
   .then (id) ->
     res.send
       success: true
-      messages: [ 'Access to project successfully granted.' ]
+      messages: [ 'Access to place successfully granted.' ]
     , 200
   .fail (error) ->
     errors.send error, res

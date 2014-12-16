@@ -9,11 +9,11 @@ accessService = ($q, accessResource, $localStorage) ->
         when 'viewer'
           return 1
 
-    getAccess: (project) ->
+    getAccess: (place) ->
       deferred = $q.defer()
 
       accessResource.query
-        projectId: project
+        placeId: place
       , (users) ->
         for user in users
           if user.id = $localStorage.userSettings.id

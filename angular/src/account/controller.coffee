@@ -11,7 +11,7 @@ accountCtrl = ($scope, $routeParams, $location, accountResource, $localStorage) 
         $localStorage.userSettings =
           id: res.account
 
-        $location.path '/projects'
+        $location.path '/places'
     login: ->
       accountResource.login
         email: $scope.input.email
@@ -21,7 +21,7 @@ accountCtrl = ($scope, $routeParams, $location, accountResource, $localStorage) 
         $localStorage.userSettings =
           id: res.account
 
-        $location.path '/projects'
+        $location.path '/places'
     goto: (location) ->
       $location.path location
 

@@ -4,14 +4,14 @@ Q = require 'q'
 # Load custom modules
 check = require '../authentication/check'
 db = require '../mongodb/connect.coffee'
-db.projects = db.db.collection 'projects'
+db.places = db.db.collection 'places'
 
 # Helpers
 errors = require '../helpers/errors.coffee'
 
-# Find a project
+# Find a place
 exports.readOne = (params) ->
-  db.projects.findOne
+  db.places.findOne
     _id: params.id
   .then (object) ->
     if object
@@ -19,20 +19,20 @@ exports.readOne = (params) ->
         id: object._id
         name: object.name
     else
-      throw new Error errors.build 'A project with that ID was not found.', 404
+      throw new Error errors.build 'A place with that ID was not found.', 404
     return ret
 
-# Find all projects
+# Find all places
 exports.read = (params) ->
   check.request params.token
   .then (account) ->
 
-    projects = account.projects.map (item) ->
-      return item.project
+    places = account.places.map (item) ->
+      return item.place
 
-    db.projects.find
+    db.places.find
       _id:
-        $in: projects
+        $in: places
     .toArray()
   .then (object) ->
     ret = []
@@ -44,7 +44,7 @@ exports.read = (params) ->
 
     return ret
 
-# Create new project
+# Create new place
 exports.create = (params) ->
   account = {}
 
@@ -52,7 +52,7 @@ exports.create = (params) ->
   .then (a) ->
     account = a
 
-    db.projects.insert
+    db.places.insert
       _id: db.id()
       name: params.name
   .then (object) ->
@@ -60,8 +60,8 @@ exports.create = (params) ->
       _id: account.id
     ,
       $push:
-        projects:
-          project: object._id
+        places:
+          place: object._id
           role: 'owner'
 
     return object
@@ -70,9 +70,9 @@ exports.create = (params) ->
   .fail (error) ->
     new Error errors.build 'Invalid authentication request token.', 401
 
-# Update a project
+# Update a place
 exports.update = (params) ->
-  db.projects.update
+  db.places.update
     _id: params.id
   ,
     { $set: params.update }
@@ -80,20 +80,20 @@ exports.update = (params) ->
     if res.ok
       return true
     else
-      throw new Error errors.build 'A project with that ID was not found.', 404
+      throw new Error errors.build 'A place with that ID was not found.', 404
 
-# Delete a project
+# Delete a place
 exports.delete = (params) ->
 
   # TODO: Remove accesses
 
-  db.projects.findOne
+  db.places.findOne
     _id: params.id
   .then (object) ->
     if object
-      db.projects.remove
+      db.places.remove
         _id: params.id
       return true
     else
-      throw new Error errors.build 'A project with that ID was not found.', 404
+      throw new Error errors.build 'A place with that ID was not found.', 404
     return ret

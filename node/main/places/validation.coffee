@@ -13,7 +13,7 @@ exports.post = (req) ->
 
   failed = []
 
-  failed.push 'Project name is required.' if not sanitized.name?
+  failed.push 'Place name is required.' if not sanitized.name?
 
   if failed.length > 0
     throw new Error errors.build failed

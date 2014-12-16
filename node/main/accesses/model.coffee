@@ -5,23 +5,23 @@ objectID = require('promised-mongo').ObjectId
 # Load custom modules
 db = require '../mongodb/connect.coffee'
 db.accounts = db.db.collection 'accounts'
-db.projects = db.db.collection 'projects'
+db.places = db.db.collection 'places'
 check = require '../authentication/check'
 
 # Helpers
 errors = require '../helpers/errors.coffee'
 
-# Update access to a project
+# Update access to a place
 exports.get = (params) ->
 
   db.accounts.find
-    projects:
+    places:
       $elemMatch:
-        project: params.projectId
+        place: params.placeId
   ,
     'name': 1
     'email': 1
-    'projects.$': 1
+    'places.$': 1
   .toArray()
   .then (accounts) ->
     ret = []
@@ -31,20 +31,20 @@ exports.get = (params) ->
         id: account._id
         name: account.name
         email: account.email
-        role: account.projects[0].role
+        role: account.places[0].role
 
     return ret
 
-# Create new access to a project
+# Create new access to a place
 exports.create = (params) ->
   db.accounts.findOne
     email: params.email
   .then (account) ->
 
     if account?
-      for project in account.projects
-        if project.project is params.projectId
-          throw new Error errors.build 'A role for this project has already been assigned to this user.', 400
+      for place in account.places
+        if place.place is params.placeId
+          throw new Error errors.build 'A role for this place has already been assigned to this user.', 400
     return account
   .then (account) ->
     if account?
@@ -52,8 +52,8 @@ exports.create = (params) ->
         email: params.email
       ,
         $push:
-          projects:
-            project: params.projectId
+          places:
+            place: params.placeId
             role: params.role
     else
       db.accounts.insert
@@ -61,31 +61,31 @@ exports.create = (params) ->
         email: params.email
         password: ''
         name: 'Invited'
-        projects: [{ project: params.projectId, role: params.role }]
+        places: [{ place: params.placeId, role: params.role }]
 
     # TODO: Send invite email here
 
   .then () ->
     return true
 
-# Update access to a project
+# Update access to a place
 exports.update = (params) ->
 
   db.accounts.findOne
     _id: new objectID params.id
-    projects:
+    places:
       $elemMatch:
-        project: params.projectId
+        place: params.placeId
   .then (account) ->
 
     if not account?
-      throw new Error errors.build 'This user does not exist or has not yet been granted permission to this project.', 404
+      throw new Error errors.build 'This user does not exist or has not yet been granted permission to this place.', 404
     
     check.request params.token
     .then (me) ->
-      if me.projects?
-        myPermission = check.getPermissions me.projects, params.projectId
-        theirPermission = check.getPermissions account.projects, params.projectId
+      if me.places?
+        myPermission = check.getPermissions me.places, params.placeId
+        theirPermission = check.getPermissions account.places, params.placeId
       else
         throw new Error errors.build 'You do not have the correct permissions to access this resource.', 401
 
@@ -101,35 +101,35 @@ exports.update = (params) ->
     .then () ->
       db.accounts.update
         _id: new objectID params.id
-        projects:
+        places:
           $elemMatch:
-            project: params.projectId
+            place: params.placeId
       ,
         $set:
-          'projects.$.role': params.role
+          'places.$.role': params.role
 
   .then (res) ->
     if res
       return true
 
-# Remove access to a project
+# Remove access to a place
 exports.delete = (params) ->
 
   db.accounts.findOne
     _id: new objectID params.id
-    projects:
+    places:
       $elemMatch:
-        project: params.projectId
+        place: params.placeId
   .then (account) ->
 
     if not account?
-      throw new Error errors.build 'This user does not exist or has not yet been granted permission to this project.', 404
+      throw new Error errors.build 'This user does not exist or has not yet been granted permission to this place.', 404
     
     check.request params.token
     .then (me) ->
-      if me.projects?
-        myPermission = check.getPermissions me.projects, params.projectId
-        theirPermission = check.getPermissions account.projects, params.projectId
+      if me.places?
+        myPermission = check.getPermissions me.places, params.placeId
+        theirPermission = check.getPermissions account.places, params.placeId
       else
         throw new Error errors.build 'You do not have the correct permissions to access this resource.', 401
 
@@ -147,8 +147,8 @@ exports.delete = (params) ->
         _id: new objectID params.id
       ,
         $pull:
-          projects:
-            project: params.projectId
+          places:
+            place: params.placeId
 
   .then (res) ->
     if res
