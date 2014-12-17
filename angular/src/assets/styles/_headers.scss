@@ -1,0 +1,51 @@
+.header {
+  &.navigation {
+    padding: 24px;
+    background-color: #EEEBE6;
+
+    img {
+      width: 30px;
+      height: 30px;
+      opacity: 0.25;
+      float: left;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      top: 5px;
+
+      &.left {
+        float: left;
+        padding-left: 18px;
+      }
+
+      &.right {
+        float: right;
+
+        span {
+          opacity: 0.5;
+        }
+
+        &:hover span {
+          opacity: 1;
+        }
+      }
+    }
+
+    li {
+      font-size: 16px;
+      font-weight: 300;
+      color: #6F757E;
+      display: inline-block;
+      padding: 0 0.8em;
+      cursor: pointer;
+
+      &:hover span {
+        border-bottom: 1px solid #CFCAC1;
+      }
+    }
+  }
+}

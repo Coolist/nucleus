@@ -4,9 +4,25 @@ body, html, .nucleus-app {
   padding: 0;
 }
 
+body, html {
+  overflow: hidden;
+}
+
+.nucleus-app {
+  overflow: auto;
+}
+
 body {
-  font-family: 'Source Sans Pro', sans-serif;
-  background-color: #E7E7E7;
+  font-family: 'museo-sans-rounded',sans-serif;
+  font-weight: 500;
+  background-color: #FFF;
+  -webkit-font-smoothing: antialiased;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 a {
