@@ -13,6 +13,7 @@ components = [
   require './common/accesses'
   require './account'
   require './places'
+  require './spaces'
 ]
 
 dependencies = [
@@ -40,12 +41,7 @@ app.config ($routeProvider) ->
       controller: 'placesCtrl'
       templateUrl: 'places/view.html'
     .when '/places/:placeId',
-      templateUrl: 'places/view.html'
+      controller: 'spacesCtrl'
+      templateUrl: 'spaces/view.html'
     .otherwise
       redirectTo: '/places'
-
-
-###.when '/places/:projectId',
-  controller: 'experimentsCtrl'
-  templateUrl: 'experiments/view.html'
-###

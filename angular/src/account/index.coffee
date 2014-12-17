@@ -1,5 +1,5 @@
 # Account module
-account = angular.module 'circled.account', []
+account = angular.module 'nucleus.account', []
 
 # Styles
 require './style.scss'

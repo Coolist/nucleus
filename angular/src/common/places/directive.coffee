@@ -1,4 +1,4 @@
-places = angular.module 'circled.common.places', []
+places = angular.module 'nucleus.common.places', []
 places.factory 'placesResource', require './resource.coffee'
 
 placesCtrl = ($scope, $location, $routeParams, placesResource, accessService) ->

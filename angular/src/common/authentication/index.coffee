@@ -1,4 +1,4 @@
-authentication = angular.module 'circled.common.authentication', []
+authentication = angular.module 'nucleus.common.authentication', []
 
 authentication.factory 'authInterceptor', require './interceptor'
 

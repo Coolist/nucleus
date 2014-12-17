@@ -1,2 +1,2 @@
-<p>Project: <select ng-model="place" ng-options="placeList.name for placeList in places" ng-change="action.switch(place)"></select> <a href="javascript:void(0)" ng-click="action.delete(place)" ng-show="access > 2">[ Delete ]</a></p>
+<p>Place: <select ng-model="place" ng-options="placeList.name for placeList in places" ng-change="action.switch(place)"></select> <a href="javascript:void(0)" ng-click="action.delete(place)" ng-show="access > 2">[ Delete ]</a></p>
 <p ng-show="access >= 2">Add a new place: <input type="text" ng-model="input.place" /> <a href="javascript:void(0)" ng-click="action.add()">[ Add ]</a></p>

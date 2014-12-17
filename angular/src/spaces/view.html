@@ -1,0 +1,9 @@
+<places place="place" access="access"></places>
+<img src="assets/images/loading.svg" class="loading" ng-class="{show: loading}" />
+<h2>Spaces</h2>
+<ul>
+  <li ng-repeat="space in spaces">
+    <em>{{ space.name }}</em> <a ng-click="action.delete(space)" ng-show="access >= 2">[ X ]</a>
+  </li>
+</ul>
+<p ng-show="access >= 2">Add new space: <input type="text" ng-model="input.name" /> <a ng-click="action.add()">[ Add ]</a></p>

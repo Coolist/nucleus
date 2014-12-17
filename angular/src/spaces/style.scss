@@ -1,0 +1,24 @@
+@import "base";
+
+em {
+  font-style: normal;
+  background-color: #F8F7AE;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #E5E46D;
+  }
+}
+
+li {
+  padding: 0.5em 0;
+}
+
+a.status {
+  color: #AFAFAF;
+  padding: 0 0.5em;
+}
+
+a.status.active {
+  color: #44D04F;
+}

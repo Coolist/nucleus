@@ -1,5 +1,5 @@
 # Places module
-places = angular.module 'circled.places', []
+places = angular.module 'nucleus.places', []
 
 # Styles
 require './style.scss'

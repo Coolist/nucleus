@@ -1,4 +1,4 @@
-accesses = angular.module 'circled.common.accesses', []
+accesses = angular.module 'nucleus.common.accesses', []
 
 accesses.service 'accessService', require './service'
 accesses.factory 'accessResource', require './resource'
