@@ -7,6 +7,7 @@ module.exports = (app, router) ->
   authentication = require './main/authentication/controller'
   accesses = require './main/accesses/controller'
   place = require './main/places/controller'
+  space = require './main/spaces/controller'
 
   pre = '/api/1/'
 
@@ -21,18 +22,25 @@ module.exports = (app, router) ->
   router.post pre + 'authentication/reset/request', authentication.postResetRequest
   router.post pre + 'authentication/reset', authentication.postReset
 
-  # Projects
+  # Place access
   router.get pre + 'places/:placeId/users', accesses.get
   router.post pre + 'places/:placeId/users', accesses.post
   router.put pre + 'places/:placeId/users/:userId', accesses.update
   router.delete pre + 'places/:placeId/users/:userId', accesses.delete
 
-  # Project access
+  # Places
   router.get pre + 'places/:id', place.getOne
   router.get pre + 'places', place.get
   router.post pre + 'places', place.post
   router.put pre + 'places/:id', place.update
   router.delete pre + 'places/:id', place.delete
+
+  # Spaces
+  router.get pre + 'places/:placeId/spaces/:id', space.getOne
+  router.get pre + 'places/:placeId/spaces', space.get
+  router.post pre + 'places/:placeId/spaces', space.post
+  router.put pre + 'places/:placeId/spaces/:id', space.update
+  router.delete pre + 'places/:placeId/spaces/:id', space.delete
 
   # Allow all origins for API
   app.use (req, res, next) ->
