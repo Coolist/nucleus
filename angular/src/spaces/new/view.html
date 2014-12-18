@@ -1,0 +1,43 @@
+<ui-header></ui-header>
+<div class="spaces--new">
+  <div class="space-name" ng-show="step >= 1">
+    <div class="container">
+      <div class="column one-fifth">
+        <span class="step-name">Create<br /> <strong>A Space</strong></span>
+      </div>
+      <div class="column four-fifths">
+        <p>Create a space for your first device. Spaces help keep your devices organized. (Eg. Entrance, Living Room, Jack’s Bedroom)</p>
+        <div class="form">
+          <input type="text" ng-model="input.name" placeholder="Name of space" />
+          <button ng-click="action.doStep(1)">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="devices--new">
+  <div class="device-add" ng-show="step >= 2">
+    <div class="container">
+      <div class="column one-fifth">
+        <span class="step-name">Add<br /> <strong>A Device</strong></span>
+      </div>
+      <div class="column four-fifths">
+        <p>Add a device to your space by selecting your device out of the supported ones below.</p>
+        <span ng-click="action.doStep(2)">NEXT</span>
+      </div>
+    </div>
+  </div>
+  <div class="device-name" ng-show="step >= 3">
+    <div class="container">
+      <div class="column one-fifth">
+        <span class="step-name">Name<br /> <strong>Device</strong></span>
+      </div>
+      <div class="column four-fifths">
+        <div class="form">
+          <input type="text" placeholder="Name of device" />
+          <button>Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

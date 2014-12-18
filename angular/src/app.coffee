@@ -11,6 +11,7 @@ require './styles.scss'
 components = [
   require './common/authentication'
   require './common/accesses'
+  require './common/header/directive'
   require './account'
   require './places'
   require './spaces'
@@ -43,5 +44,8 @@ app.config ($routeProvider) ->
     .when '/places/:placeId',
       controller: 'spacesCtrl'
       templateUrl: 'spaces/view.html'
+    .when '/places/:placeId/spaces/new',
+      controller: 'spacesNewCtrl'
+      templateUrl: 'spaces/new/view.html'
     .otherwise
       redirectTo: '/places'

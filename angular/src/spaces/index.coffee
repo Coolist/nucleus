@@ -10,6 +10,7 @@ spaces = angular.module 'nucleus.spaces', common
 require './style.scss'
 
 spaces.controller 'spacesCtrl', require './controller'
+spaces.controller 'spacesNewCtrl', require './new/controller'
 spaces.factory 'spacesResource', require './resource.coffee'
 
 module.exports = spaces

@@ -1,0 +1,82 @@
+/*
+** Grid Styles
+*/
+
+.container {
+  max-width: 1140px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.column {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-right: -.25em;
+  min-height: 1px;
+  vertical-align: top;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  &.full {
+    width: 100%;
+  }
+
+  &.one-half {
+    width: 50%;
+  }
+
+  &.one-third {
+    width: percentage(1 / 3);
+  }
+
+  &.two-thirds {
+    width: percentage(2 / 3);
+  }
+
+  &.one-fourth {
+    width: percentage(1 / 4);
+  }
+
+  &.three-fourths {
+    width: percentage(3 / 4);
+  }
+
+  &.one-fifth {
+    width: percentage(1 / 5);
+  }
+
+  &.two-fifths {
+    width: percentage(2 / 5);
+  }
+
+  &.three-fifths {
+    width: percentage(3 / 5);
+  }
+
+  &.four-fifths {
+    width: percentage(4 / 5);
+  }
+
+  &.one-sixth {
+    width: percentage(1 / 6);
+  }
+
+  &.five-sixths {
+    width: percentage(5 / 6);
+  }
+
+  &.left {
+    float: left;
+  }
+
+  &.right {
+    float: right;
+  }
+
+  /*@include breakpoint(small) {
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+    width: auto !important;
+  }*/
+}

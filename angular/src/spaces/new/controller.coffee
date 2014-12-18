@@ -1,22 +1,19 @@
-spacesCtrl = ($scope, $routeParams, $location, spacesResource) ->
+spacesNewCtrl = ($scope, $routeParams, $location, spacesResource) ->
 
-  # Temp loading var
-  $scope.loading = true
-
-  spacesResource.query
-    placeId: $routeParams.placeId
-  , (spaces) ->
-
-    if spaces.length is 0
-      $location.path 'places/' + $routeParams.placeId + '/spaces/new'
-
-    $scope.spaces = spaces
-    $scope.loading = false
+  $scope.step = 1
 
   $scope.action =
+    doStep: (step) ->
+      switch step
+        when 1
+          if $scope.step = 1
+            @.add()
+
+          $scope.step = 2
+        when 2
+          $scope.step = 3
     add: ->
       name = $scope.input.name
-      $scope.input.name = ''
       $scope.loading = true
 
       if name
@@ -25,11 +22,10 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource) ->
         ,
           name: name
         , (space) ->
+          ###
           $scope.spaces.push
             name: name
-            id: space.id
-            active: false
-            archived: false
+            id: space.id###
           $scope.loading = false
       else
         $scope.loading = false
@@ -45,11 +41,6 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource) ->
           spaceId: space.id
         , (success) ->
           $scope.loading = false
-
-###goto:
-  tests: (space) ->
-    $location.path 'places/' + $routeParams.placeId + '/spaces/' + space.id
-###
   
 
 module.exports = [
@@ -57,5 +48,5 @@ module.exports = [
   '$routeParams'
   '$location'
   'spacesResource'
-  spacesCtrl
+  spacesNewCtrl
 ]

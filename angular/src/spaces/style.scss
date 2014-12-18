@@ -1,24 +1,111 @@
-@import "base";
+@import "variables";
 
-em {
-  font-style: normal;
-  background-color: #F8F7AE;
-  cursor: pointer;
+.spaces--new {
+  > div {
+    border-bottom: 1px solid #F0F0F0;
+    
+    .container {
+      max-width: 700px;
+      padding: 150px 0;
+    }
 
-  &:hover {
-    background-color: #E5E46D;
+    p {
+      font-size: 18px;
+      color: $greyText;
+      line-height: 1.5em;
+      font-weight: 300;
+      margin: 0 0 2em 0;
+    }
+
+    .form {
+      input[type="text"] {
+        outline: none;
+        font-family: inherit;
+        font-weight: 300;
+        background: #F5F3F0;
+        border-radius: 2px;
+        border: none;
+        padding: 1em;
+        font-size: 18px;
+        color: #4E5258;
+        width: calc(100% - 200px);
+      }
+
+      // TODO: Get kyle to invent clever hover styles
+      button {
+        font-family: inherit;
+        font-weight: 300;
+        background: #7AC785;
+        border-radius: 2px;
+        padding: 1em 2em;
+        font-size: 18px;
+        color: #FFF;
+        border: none;
+        margin-left: 0.2em;
+        outline: none;
+        cursor: pointer;
+      }
+    }
   }
 }
 
-li {
-  padding: 0.5em 0;
+.devices--new {
+  > div {
+    border-bottom: 1px solid #F0F0F0;
+    
+    .container {
+      max-width: 700px;
+      padding: 150px 0;
+    }
+
+    p {
+      font-size: 18px;
+      color: $greyText;
+      line-height: 1.5em;
+      font-weight: 300;
+      margin: 0 0 2em 0;
+    }
+
+    .form {
+      input[type="text"] {
+        outline: none;
+        font-family: inherit;
+        font-weight: 300;
+        background: #F5F3F0;
+        border-radius: 2px;
+        border: none;
+        padding: 1em;
+        font-size: 18px;
+        color: #4E5258;
+        width: calc(100% - 200px);
+      }
+
+      // TODO: Get kyle to invent clever hover styles
+      button {
+        font-family: inherit;
+        font-weight: 300;
+        background: #7AC785;
+        border-radius: 2px;
+        padding: 1em 2em;
+        font-size: 18px;
+        color: #FFF;
+        border: none;
+        margin-left: 0.2em;
+        outline: none;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
-a.status {
-  color: #AFAFAF;
-  padding: 0 0.5em;
-}
+// TODO: Move me to a common place
+.step-name {
+  font-weight: 300;
+  font-size: 23px;
+  color: #6F757E;
+  line-height: 1.2em;
 
-a.status.active {
-  color: #44D04F;
+  strong {
+    font-weight: 500;
+  }
 }
