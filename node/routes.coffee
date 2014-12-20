@@ -6,6 +6,7 @@ module.exports = (app, router) ->
   # Load Controllers
   authentication = require './main/authentication/controller'
   accesses = require './main/accesses/controller'
+  deviceAuth = require './main/device-auth/controller'
   place = require './main/places/controller'
   space = require './main/spaces/controller'
 
@@ -27,6 +28,10 @@ module.exports = (app, router) ->
   router.post pre + 'places/:placeId/users', accesses.post
   router.put pre + 'places/:placeId/users/:userId', accesses.update
   router.delete pre + 'places/:placeId/users/:userId', accesses.delete
+
+  # Device auth
+  router.get pre + 'device-auth/services/:service', deviceAuth.getRedirect
+  router.get pre + 'device-auth/services/:service/activate', deviceAuth.getActivate
 
   # Places
   router.get pre + 'places/:id', place.getOne
