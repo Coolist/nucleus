@@ -22,9 +22,6 @@ spacesNewCtrl = ($scope, $routeParams, $location, spacesResource) ->
 
           $scope.loading = false
           $location.path 'places/' + $routeParams.placeId
-    
-
-  
 
 module.exports = [
   '$scope'

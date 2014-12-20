@@ -29,3 +29,22 @@ exports.getActivate = (req, res) ->
   .fail (error) ->
     errors.send error, res
   .done()
+
+# POST service
+exports.postService = (req, res) ->
+
+  check.permissions req, 3
+  .then () ->
+    model.activateService
+      token: req.query.token
+      service: req.params.service
+      authToken: req.body.auth_token
+      place: req.params.placeId
+  .then () ->
+    res.send
+      success: true
+      messages: [ 'Service successfully activated.' ]
+    , 200
+  .fail (error) ->
+    errors.send error, res
+  .done()

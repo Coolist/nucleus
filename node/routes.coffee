@@ -32,6 +32,7 @@ module.exports = (app, router) ->
   # Device auth
   router.get pre + 'device-auth/services/:service', deviceAuth.getRedirect
   router.get pre + 'device-auth/services/:service/activate', deviceAuth.getActivate
+  router.post pre + 'device-auth/services/:service/places/:placeId', deviceAuth.postService
 
   # Places
   router.get pre + 'places/:id', place.getOne
