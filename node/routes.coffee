@@ -9,6 +9,7 @@ module.exports = (app, router) ->
   deviceAuth = require './main/device-auth/controller'
   place = require './main/places/controller'
   space = require './main/spaces/controller'
+  device = require './main/devices/controller'
 
   pre = '/api/1/'
 
@@ -47,6 +48,12 @@ module.exports = (app, router) ->
   router.post pre + 'places/:placeId/spaces', space.post
   router.put pre + 'places/:placeId/spaces/:id', space.update
   router.delete pre + 'places/:placeId/spaces/:id', space.delete
+
+  # Devices
+  router.get pre + 'places/:placeId/devices/:id', device.getOne
+  router.get pre + 'places/:placeId/devices', device.get
+  router.put pre + 'places/:placeId/devices/:id', device.update
+  router.delete pre + 'places/:placeId/devices/:id', device.delete
 
   # Allow all origins for API
   app.use (req, res, next) ->

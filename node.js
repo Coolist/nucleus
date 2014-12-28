@@ -1,18 +1,19 @@
 //Define modules/config
 var express = require('express'),
-  app = express(),
-  config = require('./node/config.json');
+    app = express(),
+    http = require('http').Server(app),
+    config = require('./node/config.json');
 
 // Run Coffeescript
-require('coffee-script/register')
-
-//Setup express
-app.use(express.static(__dirname + '/static'));
+require('coffee-script/register');
 
 //Load routes
 require('./node/routes')(app, express.Router());
 
+//Load Socket.io service
+require('./node/socketio')(http);
+
 //Start server
-app.listen(3000);
+http.listen(3000);
 
 console.log('Node ' + config.server + ' server running on port 3000');

@@ -33,10 +33,11 @@ class Nest
               service_id: k
               type: 'thermostat'
               name: v.name_long
-              temperature_scale: v.temperature_scale
               properties:
-                'temperature': 'read/write'
-                'humidity': 'read'
+                'temperature': 2
+                'humidity': 1
+              values:
+                temperature_scale: v.temperature_scale
         deferred.resolve devices
       else
         deferred.reject false

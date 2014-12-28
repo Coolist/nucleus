@@ -43,7 +43,7 @@ exports.activateService = (params) ->
         throw new Error errors.build 'Service has expired.  Reauthentication required.', 404
       else
         service.setAccess object.access_token
-        return object.access_token
+        return object
     else
       service.getAccess()
       .then (res) ->
@@ -54,11 +54,11 @@ exports.activateService = (params) ->
           auth_token: params.authToken
           access_token: res.access_token
           expires: new Date Date.now() + res.expires_in * 1000
-        .then () ->
-          return res.access_token
+        .then (object) ->
+          return object
       .fail () ->
         throw new Error errors.build 'Invalid service authentication token.', 400
-  .then (token) ->
+  .then (object) ->
     service.getDevices()
     .then (devices) ->
 
@@ -66,6 +66,7 @@ exports.activateService = (params) ->
         device._id = db.id()
         device.place = params.place
         device.activated = false
+        device.service = object._id
 
         db.devices.findOne
           service_id: device.service_id
