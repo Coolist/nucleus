@@ -1,7 +1,7 @@
 .header {
   &.navigation {
-    padding: 24px;
-    background-color: #EEEBE6;
+    padding: 30px 40px;
+    border-bottom: 1px solid #EEEBE6;
 
     img {
       width: 30px;
@@ -15,22 +15,21 @@
       padding: 0;
       margin: 0;
       position: relative;
-      top: 5px;
 
       &.left {
         float: left;
-        padding-left: 18px;
+        padding-left: 25px;
+
       }
 
       &.right {
         float: right;
 
-        span {
+        li {
           opacity: 0.5;
-        }
 
-        &:hover span {
-          opacity: 1;
+          &:hover {
+            opacity: 1;
         }
       }
     }
@@ -40,12 +39,17 @@
       font-weight: 300;
       color: #6F757E;
       display: inline-block;
-      padding: 0 0.8em;
+      padding: 0.35em 1.2em;
       cursor: pointer;
 
+      span {
+        padding-bottom: 2px;
+      }
+
       &:hover span {
-        border-bottom: 1px solid #CFCAC1;
+        border-bottom: 2px solid #E3E4E6;
       }
     }
   }
+}
 }
