@@ -3,9 +3,11 @@
 */
 
 .container {
-  max-width: 1140px;
-  margin: auto;
+  max-width:100%;
+  margin: 50px 115px 0 115px;
   overflow: hidden;
+  box-sizing: border-box;
+
 }
 
 .column {

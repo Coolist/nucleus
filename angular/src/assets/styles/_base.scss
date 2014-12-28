@@ -1,3 +1,5 @@
+@import "variables";
+
 body, html, .nucleus-app {
   height: 100%;
   margin: 0;
@@ -26,12 +28,13 @@ body {
 }
 
 a {
-  color: #6AA9D1;
+  color: $blackText;
   text-decoration: none;
   cursor: pointer;
+  opacity:0.5;
 
   &:hover {
-    text-decoration: underline;
+    opacity:1;
   }
 }
 

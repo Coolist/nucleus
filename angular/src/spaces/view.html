@@ -1,10 +1,141 @@
 <ui-header></ui-header>
 <places place="place" access="access"></places>
 <img src="assets/images/loading.svg" class="loading" ng-class="{show: loading}" />
-<h2>Spaces</h2>
-<ul>
-  <li ng-repeat="space in spaces">
-    <em>{{ space.name }}</em> <a ng-click="action.delete(space)" ng-show="access >= 2">[ X ]</a>
-  </li>
+
+<div id="spaces">
+<div class="container">
+
+
+<ul class="spaces nav">
+	<li>
+		<h2>Spaces</h2>
+	</li>
+	<li>
+		<h2><a href="#">Groups</a></h2>
+	</li>
 </ul>
-<p ng-show="access >= 2">Add new space: <input type="text" ng-model="input.name" /> <a ng-click="action.add()">[ Add ]</a></p>
+
+<ul class="spaces subnav">
+	<li ng-repeat="space in spaces">
+		<a>{{ space.name }}, </a>  <!--<a ng-click="action.delete(space)" ng-show="access >= 2">[ X ]</a>-->
+	</li>
+	<li ng-show="access >= 2">
+		<input type="text" placeholder="Add another space" ng-model="input.name" /> <a class="add-space" ng-click="action.add()">[ Add ]</a>
+	</li>
+</ul>
+
+<div class="spaces devices">
+
+<div class="box">
+	<div class="top">
+		<a class="object-title">Nest Thermostat</a>
+	</div>
+	<div class="middle"></div>
+	<div class="bottom">
+		<div class="control">On/Off</div>
+	</div>
+</div>
+
+<div class="box">
+	<div class="top">
+		<a class="object-title">Nest Thermostat with a very long title.</a>
+	</div>
+	<div class="middle">oh snap this one has a bit of a middle thingy going, should see a doctor about that oh snap this one has a bit of a middle thingy going, should see a doctor about that oh snap this one has a bit of a middle thingy going, should see a doctor about that oh snap this one has a bit of a middle thingy going, should see a doctor about that</div>
+	<div class="bottom">
+		<div class="control">
+			<div class="toggle">
+		    <input type="checkbox" class="checkbox" />
+		    <div class="background"></div>
+		    <div class="switch"></div>
+	  	</div>
+		</div>
+	</div>
+</div>
+
+<div class="box">
+	<div class="top">
+		<a class="object-title">Nest Thermostat</a>
+	</div>
+	<div class="middle"></div>
+	<div class="bottom">
+		<div class="control">On/Off</div>
+	</div>
+</div>
+
+<div class="box">
+	<div class="top">
+		<a class="object-title">Nest Thermostat</a>
+	</div>
+	<div class="middle"></div>
+	<div class="bottom">
+		<div class="control">  
+			<div class="toggle">
+		    <input type="checkbox" class="checkbox" />
+		    <div class="background"></div>
+		    <div class="switch"></div>
+	  	</div>
+  	</div>
+	</div>
+</div>
+
+<div class="box">
+	<div class="top">
+		<a class="object-title">Nest Thermostat</a>
+	</div>
+	<div class="middle"></div>
+	<div class="bottom">
+		<div class="control">On/Off</div>
+	</div>
+</div>
+
+<div class="box">
+	<div class="top">
+		<a class="object-title">Nest Thermostat</a>
+	</div>
+	<div class="middle"></div>
+	<div class="bottom">
+		<div class="control">  <div class="toggle">
+    <input type="checkbox" class="checkbox" />
+    <div class="background"></div>
+    <div class="switch"></div>
+  </div></div>
+	</div>
+</div>
+
+<div class="box">
+	<div class="top">
+		<a class="object-title">Nest Thermostat</a>
+	</div>
+	<div class="middle"></div>
+	<div class="bottom">
+		<div class="control">  <div class="toggle">
+    <input type="checkbox" class="checkbox" />
+    <div class="background"></div>
+    <div class="switch"></div>
+  </div></div>
+	</div>
+</div>
+
+<div class="box">
+	<div class="top">
+		<a class="object-title">Nest Thermostat</a>
+	</div>
+	<div class="middle"></div>
+	<div class="bottom">
+		<div class="control">  <div class="toggle">
+    <input type="checkbox" class="checkbox" />
+    <div class="background"></div>
+    <div class="switch"></div>
+  </div></div>
+	</div>
+</div>
+
+<a class="spaces add-device">
+	<span class="add-device plus">&#43;</span>
+</a>
+
+
+</div>
+
+</div>
+</div>
