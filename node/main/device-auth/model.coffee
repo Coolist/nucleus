@@ -37,6 +37,7 @@ exports.activateService = (params) ->
 
   db.services.findOne
     place: params.place
+    service: params.service
   .then (object) ->
     if object
       if new Date() > new Date object.expires_in

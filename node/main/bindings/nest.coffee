@@ -36,7 +36,7 @@ class Nest
               properties:
                 'temperature': 2
                 'humidity': 1
-              values:
+              settings:
                 temperature_scale: v.temperature_scale
         deferred.resolve devices
       else
