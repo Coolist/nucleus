@@ -2,111 +2,61 @@
 <places place="place" access="access"></places>
 <img src="assets/images/loading.svg" class="loading" ng-class="{show: loading}" />
 <div id="spaces">
-	<div class="container">
+  <div class="container">
 
-		<div class="spaces left">
-			
-			<ul class="spaces nav">
-				<li><h2>Spaces</h2></li>
-				<li><h2><a href="#">Groups</a></h2></li>
-			</ul>
+    <div class="spaces left">
+      
+      <ul class="spaces nav">
+        <li><h2>Spaces</h2></li>
+        <li><h2><a href="#">Groups</a></h2></li>
+      </ul>
 
-			<ul class="spaces sub-nav">
-				<li ng-repeat="space in spaces">
-					<!-- <a ng-click="action.delete(space)" ng-show="access >= 2">[x]</a> --><a>{{ space.name }}, </a>
-				</li>
-				<li ng-show="access >= 2">
-					<div class="spaces input-box">
-						<input type="text" placeholder="Add another space" ng-model="input.name" /><a class="add-space" ng-click="action.add()"><i class="icon ion-plus"></i></a>
-					</div>
-				</li>
-			</ul>
-		</div>
+      <ul class="spaces sub-nav">
+        <li ng-repeat="space in spaces">
+          <a ng-click="action.delete(space)" ng-show="access >= 2">[x]</a> <a>{{ space.name }}, </a>
+        </li>
+        <li ng-show="access >= 2">
+          <div class="spaces input-box">
+            <input type="text" placeholder="Add another space" ng-model="input.name" /><a class="add-space" ng-click="action.add()"><i class="icon ion-plus"></i></a>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-		<div class="spaces right">
-			<div class="spaces info">
-				<div class="title">Living Room</div>
-				<ul class="item">
-					<li>
-						<span class="label">Temperature</span>
-						<span class="data">96</span>
-					</li>
-					<li>
-						<span class="label">Lock</span>
-						<span class="data">All Doors Locked</span>
-					</li>
-				</ul>
-			</div>
+    <div class="spaces right">
+      <div class="spaces info">
+        <div class="title">Living Room</div>
+        <ul class="item">
+          <li>
+            <span class="label">Temperature</span>
+            <span class="data">96</span>
+          </li>
+          <li>
+            <span class="label">Lock</span>
+            <span class="data">All Doors Locked</span>
+          </li>
+        </ul>
+      </div>
 
-			<div class="box">
-				<div class="top">
-					<a class="object-title">Nest Thermostat</a>
-				</div>
-				<div class="bottom">
-					<div class="toggle green">
-					  <input type="checkbox" class="checkbox" />
-					  <div class="background"></div>
-					  <div class="switch"></div>
-				  </div>
-				</div>
-			</div>
+      <div class="box" ng-repeat="device in devices">
+        <div class="top">
+          <a class="object-title">{{ device.name }}</a>
+        </div>
+        <div class="bottom">
+          <div class="element" ng-repeat="(propertyName, propertyValue) in device.properties" ng-switch="propertyName">
+            <div ng-switch-when="power" class="toggle green">
+              <input type="checkbox" class="checkbox" ng-model="device.states[propertyName]" ng-change="action.setState(device, propertyName, device.states[propertyName])" />
+              <div class="background"></div>
+              <div class="switch"></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-			<div class="box">
-				<div class="top">
-					<a class="object-title">August Door Lock</a>
-				</div>
-				<div class="bottom">
-					<div class="toggle yellow">
-						<input type="checkbox" class="checkbox" />
-						<div class="background"></div>
-						<div class="switch"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="box">
-				<div class="top">
-					<a class="object-title">Nest Thermostat with a very long title.</a>
-				</div>
-				<div class="bottom">
-					<div class="toggle green">
-						<input type="checkbox" class="checkbox" />
-						<div class="background"></div>
-						<div class="switch"></div>  		
-					</div>
-				</div>
-			</div>
-
-			<div class="box">
-				<div class="top">
-					<a class="object-title">Nest Thermostat with a very long title.</a>
-				</div>
-				<div class="bottom">
-					<div class="toggle green">
-						<input type="checkbox" class="checkbox" />
-						<div class="background"></div>
-						<div class="switch"></div>
-				  	</div>
-				</div>
-			</div>
-
-			<div class="box">
-				<div class="top">
-					<a class="object-title">Nest Thermostat with a very long title.</a>
-				</div>
-				<div class="bottom">
-					<div class="status">
-						<div class="background">
-							<div class="status-percent"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<a class="spaces add-device">
-				<span class="add-device plus">&#43;</span>
-			</a>
-		</div>
-		</div> 
-	</div>
+      <a class="spaces add-device">
+        <span class="add-device plus">&#43;</span>
+      </a>
+    </div>
+    </div> 
+  </div>
 </div>

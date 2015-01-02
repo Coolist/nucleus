@@ -1,4 +1,4 @@
-spacesCtrl = ($scope, $routeParams, $location, spacesResource) ->
+spacesCtrl = ($scope, $routeParams, $location, spacesResource, devicesResource) ->
 
   # Temp loading var
   $scope.loading = true
@@ -12,6 +12,12 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource) ->
 
     $scope.spaces = spaces
     $scope.loading = false
+
+  devicesResource.query
+    placeId: $routeParams.placeId
+  , (devices) ->
+
+    $scope.devices = devices
 
   $scope.action =
     add: ->
@@ -33,7 +39,15 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource) ->
           $scope.loading = false
       else
         $scope.loading = false
-    
+
+    setState: (device, name, value) ->
+      update = {}
+      update[name] = value
+
+      devicesResource.updateState
+        placeId: $routeParams.placeId
+        deviceId: device.id
+      , update
 
     delete: (space) ->
       if confirm 'Delete space ' + space.name + '?'
@@ -57,5 +71,6 @@ module.exports = [
   '$routeParams'
   '$location'
   'spacesResource'
+  'devicesResource'
   spacesCtrl
 ]

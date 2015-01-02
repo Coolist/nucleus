@@ -74,6 +74,7 @@ exports.update = (data, user) ->
           else
             update._id = db.id()
             update.activated = false
+            update.name = device.local_name
 
             db.devices.insert update
 

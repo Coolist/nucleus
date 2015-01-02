@@ -15,6 +15,7 @@ components = [
   require './account'
   require './places'
   require './spaces'
+  require './devices'
 ]
 
 dependencies = [

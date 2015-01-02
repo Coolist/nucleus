@@ -14,6 +14,17 @@ module.exports = (http) ->
   deviceMQ = redis.createClient()
   deviceMQ.subscribe 'device-mq'
 
+  deviceMQ.on 'message', (channel, mes) ->
+    if channel is 'device-mq'
+      m = JSON.parse mes
+      
+      for userId, user of users
+        if user.place is m.place
+          user.socket.emit 'device:setState',
+            id: m.id
+            type: m.property
+            value: m.value
+
   io.on 'connection', (socket) ->
 
     users[socket.id] =
@@ -41,11 +52,6 @@ module.exports = (http) ->
         devices.update data, users[socket.id]
       else if JSON.stringify(users[socket.id].devices) isnt JSON.stringify(data)
         devices.update data, users[socket.id]
-
-    deviceMQ.on 'message', (channel, mes) ->
-      if channel is 'device-mq'
-        m = JSON.parse mes
-        console.log m
 
     ###
     socket.emit 'device:setState',

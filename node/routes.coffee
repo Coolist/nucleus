@@ -53,6 +53,7 @@ module.exports = (app, router) ->
   router.get pre + 'places/:placeId/devices/:id', device.getOne
   router.get pre + 'places/:placeId/devices', device.get
   router.put pre + 'places/:placeId/devices/:id', device.update
+  router.put pre + 'places/:placeId/devices/:id/states', device.updateState
   router.delete pre + 'places/:placeId/devices/:id', device.delete
 
   # Allow all origins for API

@@ -30,6 +30,7 @@ exports.get = (req, res) ->
   .then () ->
     model.read
       placeId: req.params.placeId
+      activated: req.query.activated
   .then (response) ->
     res.send response, 200
   .fail (error) ->

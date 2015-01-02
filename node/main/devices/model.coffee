@@ -27,15 +27,19 @@ exports.readOne = (params) ->
         place: object.place
         service: object.service
         properties: object.properties
-        values: object.values
+        states: object.states
     else
       throw new Error errors.build 'A device with that ID was not found.', 404
     return ret
 
 # Find all devices
 exports.read = (params) ->
+  activated = true
+  activated = false if params.activated? and params.activated is 'false'
+
   db.devices.find
     place: params.placeId
+    activated: activated
   .toArray()
   .then (object) ->
     ret = []
@@ -47,7 +51,7 @@ exports.read = (params) ->
         place: item.place
         service: item.service
         properties: item.properties
-        values: item.values
+        states: item.states
 
     return ret
 
@@ -93,7 +97,24 @@ exports.updateState = (params) ->
       db.services.findOne
         _id: object.service
       .then (serviceObject) ->
-      # deviceMQ.publish 'device-mq', JSON.stringify
+        switch serviceObject.service
+          when 'nucleus-center'
+            for key, value of params.body
+              exists = false
+
+              # Check to see if the property exists and is writeable
+              for keyP, valueP of object.properties
+                if key is keyP and valueP is 2
+                  exists = true
+
+              if exists
+                do (deviceMQ, object, key, value) ->
+                  deviceMQ.publish 'device-mq', JSON.stringify
+                    device: object._id
+                    id: object.service_id
+                    place: object.place
+                    property: key
+                    value: value
     else
       throw new Error errors.build 'A device with that ID was not found.', 404
     
