@@ -1,43 +1,92 @@
 <ui-header></ui-header>
 <places place="place" access="access"></places>
 <img src="assets/images/loading.svg" class="loading" ng-class="{show: loading}" />
-
 <div id="spaces">
 	<div class="container">
-		<ul class="spaces nav">
-			<li>
-				<h2>Spaces</h2>
-			</li>
-			<li>
-				<h2><a href="#">Groups</a></h2>
-			</li>
-		</ul>
 
-		<ul class="spaces subnav">
-			<li ng-repeat="space in spaces">
-				<a>{{ space.name }}, </a>  <a ng-click="action.delete(space)" ng-show="access >= 2">[ X ]</a>
-			</li>
-			<li ng-show="access >= 2">
-				<div class="spaces input-box">
-					<input type="text" placeholder="Add another space" ng-model="input.name" /><a class="add-space" ng-click="action.add()">&#43;</a>
+		<div class="spaces left">
+			
+			<ul class="spaces nav">
+				<li><h2>Spaces</h2></li>
+				<li><h2><a href="#">Groups</a></h2></li>
+			</ul>
+
+			<ul class="spaces sub-nav">
+				<li ng-repeat="space in spaces">
+					<!-- <a ng-click="action.delete(space)" ng-show="access >= 2">[x]</a> --><a>{{ space.name }}, </a>
+				</li>
+				<li ng-show="access >= 2">
+					<div class="spaces input-box">
+						<input type="text" placeholder="Add another space" ng-model="input.name" /><a class="add-space" ng-click="action.add()"><i class="icon ion-plus"></i></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="spaces right">
+			<div class="spaces info">
+				<div class="title">Living Room</div>
+				<ul class="item">
+					<li>
+						<span class="label">Temperature</span>
+						<span class="data">96</span>
+					</li>
+					<li>
+						<span class="label">Lock</span>
+						<span class="data">All Doors Locked</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="box">
+				<div class="top">
+					<a class="object-title">Nest Thermostat</a>
 				</div>
-			</li>
-		</ul>
+				<div class="bottom">
+					<div class="toggle green">
+					  <input type="checkbox" class="checkbox" />
+					  <div class="background"></div>
+					  <div class="switch"></div>
+				  </div>
+				</div>
+			</div>
 
-		<div class="spaces devices">
+			<div class="box">
+				<div class="top">
+					<a class="object-title">August Door Lock</a>
+				</div>
+				<div class="bottom">
+					<div class="toggle yellow">
+						<input type="checkbox" class="checkbox" />
+						<div class="background"></div>
+						<div class="switch"></div>
+					</div>
+				</div>
+			</div>
 
 			<div class="box">
 				<div class="top">
 					<a class="object-title">Nest Thermostat with a very long title.</a>
 				</div>
 				<div class="bottom">
-					<div class="control">
-						<div class="toggle">
-					    <input type="checkbox" class="checkbox" />
-					    <div class="background"></div>
-					    <div class="switch"></div>
+					<div class="toggle green">
+						<input type="checkbox" class="checkbox" />
+						<div class="background"></div>
+						<div class="switch"></div>  		
+					</div>
+				</div>
+			</div>
+
+			<div class="box">
+				<div class="top">
+					<a class="object-title">Nest Thermostat with a very long title.</a>
+				</div>
+				<div class="bottom">
+					<div class="toggle green">
+						<input type="checkbox" class="checkbox" />
+						<div class="background"></div>
+						<div class="switch"></div>
 				  	</div>
-					</div>
 				</div>
 			</div>
 
@@ -46,55 +95,10 @@
 					<a class="object-title">Nest Thermostat with a very long title.</a>
 				</div>
 				<div class="bottom">
-					<div class="control">
-						<div class="toggle">
-					    <input type="checkbox" class="checkbox" />
-					    <div class="background"></div>
-					    <div class="switch"></div>
-				  	</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="box">
-				<div class="top">
-					<a class="object-title">Nest Thermostat with a very long title.</a>
-				</div>
-				<div class="bottom">
-					<div class="control">
-					</div>
-				</div>
-			</div>
-
-			<div class="box">
-				<div class="top">
-					<a class="object-title">Nest Thermostat with a very long title.</a>
-				</div>
-				<div class="bottom">
-					<div class="control">
-						<div class="status">
-							<div class="background">
-								<div class="status-percent"></div>
-							</div>
+					<div class="status">
+						<div class="background">
+							<div class="status-percent"></div>
 						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="box">
-				<div class="top">
-					<a class="object-title">Nest Thermostat with a very long title.</a>
-				</div>
-				<div class="middle">
-					
-				</div>
-				<div class="bottom">
-					<div class="control">
-						<div class="toggle">
-					    <input type="checkbox" class="checkbox" />
-					    <div class="background"></div>
-					    <div class="switch"></div>
-				  	</div>
 					</div>
 				</div>
 			</div>
@@ -103,80 +107,6 @@
 				<span class="add-device plus">&#43;</span>
 			</a>
 		</div>
-		<div class="nucleus-styles">
-
-		<ul>
-
-		<!-- Buttons Small -->
-
-			<li>
-					<a class="bttn--small light">
-						<span class="text"><i class="icon ion-home"></i></span>
-					</a>
-			</li>
-
-			<li>
-					<a class="bttn--small dark">
-						<span class="text"><i class="icon ion-search"></i></span>
-					</a>
-			</li>
-
-			<li>
-					<a class="bttn--small light-clear">
-						<span class="text"><i class="icon ion-close"></i></span>
-					</a>
-			</li>
-
-			<li>
-					<a class="bttn--small dark-clear">
-						<span class="text"><i class="icon ion-checkmark"></i></span>
-					</a>
-			</li>
-
-		<!-- Buttons Regular-->
-
-			<li>
-					<a class="bttn--regular light">
-						<span class="text">Button</span>
-					</a>
-			</li>
-
-			<li>
-					<a class="bttn--regular dark">
-						<span class="text">Button</span>
-					</a>
-			</li>
-
-			<li>
-					<a class="bttn--regular light-clear">
-						<span class="text">Button</span>
-					</a>
-			</li>
-
-			<li>
-					<a class="bttn--regular dark-clear">
-						<span class="text">Button</span>
-					</a>
-			</li>
-
-			<!-- Toggles -->
-
-			<li>
-					<div class="toggle green">
-						<input type="checkbox" class="checkbox" />
-						<div class="background"></div>
-						<div class="switch"></div>
-					</div>
-			</li>
-
-			<li>
-					<div class="toggle yellow">
-						<input type="checkbox" class="checkbox" />
-						<div class="background"></div>
-						<div class="switch"></div>
-					</div>
-			</li>
-
-		</ul>
+		</div> 
 	</div>
 </div>

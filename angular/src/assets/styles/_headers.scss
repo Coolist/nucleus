@@ -1,7 +1,7 @@
 .header {
   &.navigation {
     padding: 30px 40px;
-    border-bottom: 1px solid #EEEBE6;
+    background: #46B3C2;
 
     img {
       width: 30px;
@@ -36,8 +36,8 @@
 
     li {
       font-size: 16px;
-      font-weight: 300;
-      color: #6F757E;
+      font-weight: 400;
+      color: #FFF;
       display: inline-block;
       padding: 0.35em 1.2em;
       cursor: pointer;
@@ -47,7 +47,7 @@
       }
 
       &:hover span {
-        border-bottom: 2px solid #E3E4E6;
+        border-bottom: 2px solid #74C6D1;
       }
     }
   }
