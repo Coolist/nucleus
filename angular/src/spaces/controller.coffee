@@ -1,7 +1,17 @@
-spacesCtrl = ($scope, $routeParams, $location, spacesResource, devicesResource) ->
+spacesCtrl = ($scope, $routeParams, $location, spacesResource, devicesResource, realtimeFactory) ->
+
+  # Authenticate realtime
+  realtimeFactory.checkAuth $routeParams.placeId
 
   # Temp loading var
   $scope.loading = true
+
+  # Realtime device state update
+  $scope.$on 'socket:device:state', (ev, data) ->
+    for i, device of $scope.devices
+      if device.id? and device.id is data.id
+        for state, value of data.states
+          device.states[state] = value if device.states[state]?
 
   spacesResource.query
     placeId: $routeParams.placeId
@@ -72,5 +82,6 @@ module.exports = [
   '$location'
   'spacesResource'
   'devicesResource'
+  'realtimeFactory'
   spacesCtrl
 ]

@@ -13,17 +13,28 @@ module.exports = (http) ->
   # Subscribe to device message queue Redis channel
   deviceMQ = redis.createClient()
   deviceMQ.subscribe 'device-mq'
+  deviceMQ.subscribe 'notification-mq'
 
   deviceMQ.on 'message', (channel, mes) ->
     if channel is 'device-mq'
       m = JSON.parse mes
       
       for userId, user of users
-        if user.place is m.place
+        if user.place is m.place and user.type is 'center'
           user.socket.emit 'device:setState',
             id: m.id
             type: m.property
             value: m.value
+    else if channel is 'notification-mq'
+      m = JSON.parse mes
+
+      switch m.type
+        when 'state'
+          for userId, user of users
+            if user.place is m.place and user.type is 'user'
+              user.socket.emit 'device:state',
+                id: m.id
+                states: m.states
 
   io.on 'connection', (socket) ->
 

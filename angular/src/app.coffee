@@ -3,6 +3,7 @@ require 'bower/angular'
 require 'bower/angular-route'
 require 'bower/angular-resource'
 require 'bower/ngstorage'
+require 'bower/angular-socket-io'
 
 # Styles
 require './styles.scss'
@@ -12,6 +13,7 @@ components = [
   require './common/authentication'
   require './common/accesses'
   require './common/header/directive'
+  require './common/realtime'
   require './account'
   require './places'
   require './spaces'
@@ -22,6 +24,7 @@ dependencies = [
   'ngRoute',
   'ngResource'
   'ngStorage'
+  'btford.socket-io'
 ]
 
 # Add defined compentents to dependencies

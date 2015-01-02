@@ -49,6 +49,9 @@
               <div class="background"></div>
               <div class="switch"></div>
             </div>
+            <div ng-switch-when="motion">
+              {{ device.states[propertyName] ? 'Motion' : 'No Motion' }}
+            </div>
           </div>
         </div>
       </div>

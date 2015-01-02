@@ -1,5 +1,6 @@
 # Load Node modules
 Q = require 'q'
+redis = require 'redis'
 
 # Load custom modules
 db = require '../main/mongodb/connect.coffee'
@@ -9,6 +10,9 @@ check = require '../main/authentication/check'
 
 # Helpers
 errors = require '../main/helpers/errors.coffee'
+
+# Notification queue
+notificationMQ = redis.createClient()
 
 exports.getService = (user, success) ->
 
@@ -71,10 +75,24 @@ exports.update = (data, user) ->
               service_id: device.id
             ,
               $set: update
+
+            exports.updateNotify
+              _id: object._id
+              place: object.place
+              states: update.states
           else
             update._id = db.id()
             update.activated = false
             update.name = device.local_name
 
             db.devices.insert update
+            .then (object) ->
+              exports.updateNotify object
 
+exports.updateNotify = (object) ->
+  do (object) ->
+  notificationMQ.publish 'notification-mq', JSON.stringify
+    type: 'state'
+    place: object.place
+    id: object._id
+    states: object.states

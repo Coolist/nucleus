@@ -4,6 +4,7 @@ webpack = require 'webpack'
 appRoot = "#{__dirname}/src"
 styleRoot = "#{appRoot}/assets/styles"
 bowerRoot = "#{__dirname}/bower_components"
+nodeRoot = "#{__dirname}/node_modules"
 
 module.exports =
   debug: true
@@ -41,6 +42,7 @@ module.exports =
   resolve:
     alias:
       bower: bowerRoot
+      node: nodeRoot
       'bower/angular': 'exports?angular!bower/angular/angular'
 
     extensions: [

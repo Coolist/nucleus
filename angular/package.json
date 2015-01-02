@@ -22,6 +22,7 @@
     "gulp-webserver": "~0.9.0"
   },
   "dependencies": {
-    "coffee-script": "~1.7.1"
+    "coffee-script": "~1.7.1",
+    "socket.io-client": "~1.2.1"
   }
 }
