@@ -1,18 +1,24 @@
 # Load Node modules
 Q = require 'q'
+redis = require 'redis'
 
 # Load custom modules
 db = require '../mongodb/connect.coffee'
 db.places = db.db.collection 'places'
 db.devices = db.db.collection 'devices'
+db.services = db.db.collection 'services'
 
 # Helpers
 errors = require '../helpers/errors.coffee'
+
+# Client for the device message queue
+deviceMQ = redis.createClient()
 
 # Find a device
 exports.readOne = (params) ->
   db.devices.findOne
     _id: params.id
+    place: params.placeId
   .then (object) ->
     if object
       ret =
@@ -68,6 +74,7 @@ exports.create = (params) ->
 exports.update = (params) ->
   db.devices.update
     _id: params.id
+    place: params.placeId
   ,
     { $set: params.update }
   .then (res) ->
@@ -76,10 +83,26 @@ exports.update = (params) ->
     else
       throw new Error errors.build 'A device with that ID was not found.', 404
 
+# Update a device's state
+exports.updateState = (params) ->
+  db.devices.findOne
+    _id: params.id
+    place: params.placeId
+  .then (object) ->
+    if object
+      db.services.findOne
+        _id: object.service
+      .then (serviceObject) ->
+      # deviceMQ.publish 'device-mq', JSON.stringify
+    else
+      throw new Error errors.build 'A device with that ID was not found.', 404
+    
+
 # Delete a device
 exports.delete = (params) ->
   db.devices.findOne
     _id: params.id
+    place: params.placeId
   .then (object) ->
     if object
       db.devices.remove

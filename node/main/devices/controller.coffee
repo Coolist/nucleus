@@ -67,7 +67,25 @@ exports.update = (req, res) ->
   .then () ->
     res.send
       success: true
-      messages: [ 'Space successfully updated.' ]
+      messages: [ 'Device successfully updated.' ]
+    , 200
+  .fail (error) ->
+    errors.send error, res
+  .done()
+
+# UPDATE device state
+exports.updateState = (req, res) ->
+
+  check.permissions req, 2
+  .then () ->
+    model.updateState
+      id: req.params.id
+      placeId: req.params.placeId
+      body: req.body
+  .then () ->
+    res.send
+      success: true
+      messages: [ 'Device state successfully updated.' ]
     , 200
   .fail (error) ->
     errors.send error, res
@@ -81,10 +99,11 @@ exports.delete = (req, res) ->
   Q.fcall () ->
     model.delete
       id: req.params.id
+      placeId: req.params.placeId
   .then (response) ->
     res.send
       success: true
-      messages: [ 'Space successfully deleted.' ]
+      messages: [ 'Device successfully deleted.' ]
   .fail (error) ->
     errors.send error, res
   .done()

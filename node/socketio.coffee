@@ -2,12 +2,17 @@ module.exports = (http) ->
 
   # Load Modules
   io = require('socket.io') http
+  redis = require 'redis'
 
   authentication = require './realtime/authentication.coffee'
   devices = require './realtime/devices.coffee'
 
   # Init Users
   users = []
+
+  # Subscribe to device message queue Redis channel
+  deviceMQ = redis.createClient()
+  deviceMQ.subscribe 'device-mq'
 
   io.on 'connection', (socket) ->
 
@@ -36,6 +41,11 @@ module.exports = (http) ->
         devices.update data, users[socket.id]
       else if JSON.stringify(users[socket.id].devices) isnt JSON.stringify(data)
         devices.update data, users[socket.id]
+
+    deviceMQ.on 'message', (channel, mes) ->
+      if channel is 'device-mq'
+        m = JSON.parse mes
+        console.log m
 
     ###
     socket.emit 'device:setState',

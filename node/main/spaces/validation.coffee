@@ -26,6 +26,7 @@ exports.update = (req) ->
 
   sanitized =
     id: req.params.id
+    placeId: req.params.placeId
     update: {}
 
   sanitized.update.name = req.body.name if req.body.name?

@@ -79,6 +79,7 @@ exports.delete = (req, res) ->
   Q.fcall () ->
     model.delete
       id: req.params.id
+      placeId: req.params.placeId
   .then (response) ->
     res.send
       success: true

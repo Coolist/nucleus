@@ -4,6 +4,9 @@
     "mongodb": {
       "name": "nucleus",
       "server": "localhost"
+    },
+    "redis": {
+      "server": "localhost"
     }
   }
 }

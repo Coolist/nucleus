@@ -14,7 +14,9 @@
     "bcrypt-nodejs": "0.0.3",
     "rand-token": "~0.2.1",
     "restler": "~3.2.2",
-    "socket.io": "~1.2.1"
+    "socket.io": "~1.2.1",
+    "redis": "~0.12.1",
+    "hiredis": "~0.1.17"
   },
   "devDependencies": {
     "gulp": "~3.6.1",
@@ -31,6 +33,6 @@
     "autoprefixer-loader": "~0.1.1"
   },
   "scripts": {
-    "start": "mongod & gulp serve & cd angular && gulp watch"
+    "start": "mongod & redis-server & gulp serve & cd angular && gulp watch"
   }
 }

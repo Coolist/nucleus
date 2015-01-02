@@ -13,6 +13,7 @@ errors = require '../helpers/errors.coffee'
 exports.readOne = (params) ->
   db.spaces.findOne
     _id: params.id
+    place: params.placeId
   .then (object) ->
     if object
       ret =
@@ -58,6 +59,7 @@ exports.create = (params) ->
 exports.update = (params) ->
   db.spaces.update
     _id: params.id
+    place: params.placeId
   ,
     { $set: params.update }
   .then (res) ->
@@ -70,6 +72,7 @@ exports.update = (params) ->
 exports.delete = (params) ->
   db.spaces.findOne
     _id: params.id
+    place: params.placeId
   .then (object) ->
     if object
       db.spaces.remove
