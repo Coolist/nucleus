@@ -13,6 +13,8 @@ body, html {
 input {
   border: 0;
   background: #F6F4EE;
+  font-family:'museo-sans-rounded',sans-serif;
+  font-weight:100;
 
   &:focus {
     outline:none;

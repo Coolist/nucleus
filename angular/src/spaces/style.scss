@@ -97,7 +97,7 @@
   }
 }
 
-#spaces .container{margin: 50px 115px 0 115px;}
+#spaces .container{margin: 60px 60px 60px 115px;}
 
 // TODO: Move me to a common place
 .step-name {
@@ -111,142 +111,134 @@
   }
 }
 
-ul.spaces.nav {
-  width: 100%;
-  list-style: none;
-  padding: 0;
-  margin: -20px 0 0 0;
+.spaces.left{
 
-  li {
-    font-size: 0.8em;
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  min-width: 200px;
+  padding-right: 75px;
+
+  ul {
+    list-style-type:none;
+    padding:0;
   }
 
-  a {
-    color: $greyText;
-    font-weight: 300;
-
-    &:hover{
-      color: $blackText;
+  ul.spaces.sub-nav li{
+      margin-bottom: 10px; 
+      font-weight: 100;
     }
-  }
-}
-
-ul.spaces.subnav {
-  width: 75%;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-  .spaces.input-box {
-    border: 1.5px solid #D8D8D8;
-    border-radius:2px;
-  }
-
-  a.add-space {
-    display: inline-block;
-    border-left:1px solid #D8D8D8;
-    color: #FFF; 
-    font-size: 1.2em; 
-    text-align: center; 
-    width: 25px; 
-    line-height: 25px; 
-    font-weight: 500;
-    border-radius: 0 2px 2px 0;
-    padding: 0.3em 0.4em 0.4em 0.4em;
-    color:$green;
-
-    &:hover {
-      color: #000;
-    }
-}
-
-  input {
-    font-size: 0.9em;
-    background: transparent;
-        padding: 0.3em 0.4em 0.4em 0.8em;
-
-    &::-webkit-input-placeholder{
-
-    }
-  }
-
-  a { 
-    color: $greyText; 
-
-    &:hover {
-      color: $blackText;
-      text-decoration: none;
-    }
-  }
-}
-
-ul.spaces li{
-    font-weight: normal;
-    color: $blackText;
-    padding: 0.35em 1em 0.35em 0;
-    display: inline-block;
-    font-weight: 300;
-}
-
-.spaces.devices {
-  width: 100%;
-  margin: 50px 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
   
+  ul.spaces.nav {
+    margin: -15px 0 0 0;
+  
+    li {
+      display: inline-block;
+      font-size: 0.7em;
+      margin: 0;
 
-.box {
-  background-color: $sand;
-  max-width:250px;
-  padding: 0 1.5em 0 1.5em;
-  box-sizing: border-box;
-  min-width: 250px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+      &:first-child{
+        margin-right: 10px;
+      }
+
+      a {
+        color: $lightGreyText;
+        font-weight: 100;
+
+        &:hover{
+          color: $blackText;
+        }
+      }  
+    }
+  }
+}  
+.spaces.right {
+
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+
+  .info {
+    margin: 0 0 60px 0;
+  }
+
+  .label {
+    display: block;
+    font-size: 0.8em;
+    color: lighten($greyText, 25%); 
+    font-weight: 100; 
+    margin-bottom: 5px;
+    }
+
+  .title {
+    font-size: 1.8em;
+    font-weight: 300; 
+    padding: 0 0 30px 0; 
+    border-bottom: 1px solid lighten($greyText, 55%);
+  }
+
+  ul.item{
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+
+    li { 
+      display: inline-block;
+      padding: 15px 50px 0 20px;
+      border-right: 1px solid lighten($greyText, 55%);
+  
+      &:last-child {
+        border: 0;
+      }
+
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+  }
+}
 
   .top {
-  font-size: 1.25em;
-  min-height: 80px;
-  display: -webkit-flex;
-  display: flex;
-  min-width: 100%;
+    font-size: 1.25em;
+    min-height: 80px;
+    display: -webkit-flex;
+    display: flex;
+    min-width: 100%;
 
     .object-title {
       margin: auto 0;
+      color: $blackText;
+      font-weight: 300;
     }
   }
 
   .middle {
     margin-bottom: 15px;
-    height:135px;
-    overflow:hidden;
+    height: 135px;
+    overflow: hidden;
   }
 
   .bottom {
     height: 45px;
     min-width: 100%;
-
-    .control {
-    }
   }
-}
-  a.spaces.add-device {
+
+
+a.spaces.add-device {
     opacity: 1;
     width: 50px;
     height: 50px;
-    background-color: #F6F4EE;
-    display: flex;
+    background-color: $sand;
+    display: inline-block;
+    text-align: center;
+    line-height: 55px;
 
     .plus {
       margin: auto;
       opacity: 1;
       font-size: 1.5em;
       line-height: 0;
-      color:$lightGreyText;
+      color: $lightGreyText;
     }
 
     &:hover {
@@ -254,8 +246,19 @@ ul.spaces li{
         color:$greyText;
       }
     }
-  }
 }
+
+.box {
+  background-color: $sand;
+  min-width: 300px;
+  width: 300px;
+  min-height: 125px;
+  margin: 0 10px 10px 0;
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 25px 0 25px;
+  box-sizing: border-box;
+} 
 
 .toggle {
     display: block;
@@ -316,6 +319,7 @@ ul.spaces li{
   }
 
 .status {
+
   .background { 
     display: inline-block;
     width: 100px; 
@@ -325,15 +329,17 @@ ul.spaces li{
     padding: 2px;
     box-sizing: border-box;
     }
+
   .status-percent {
-    width:50%;
-    height:6px;
+    width: 50%;
+    height: 6px;
     background: #FFF;
     border-radius: 1px;
   }
 }
 
 .bttn--small {
+
   padding: 0.25em 0.5em;
   border-radius: 2px;
   transition: all 0.2s ease;
@@ -409,6 +415,7 @@ ul.spaces li{
 
     &:hover{
       color: $blackText;
+      background-color: lighten($lightGreyText, 25%);
     }
   }
 
@@ -421,16 +428,62 @@ ul.spaces li{
   }
 }
 
+.form {
+  font-family: "museo-sans-rounded",sans-serif;
+  font-weight: 300;
 
-
-
-.nucleus-styles { 
-  margin: 50px 0;
-  ul {
-    list-style-type:none;
+  input {
+    padding: 0.8em 1.2em;
+    font-size: 1em;
+    font-family: "museo-sans-rounded",sans-serif;
+    font-weight: 300;
   }
 
-  li { 
-    margin-bottom: 25px;
+  button {
+    border: 0;
+    padding: 0.8em 1.2em;
+    font-size: 1em;
+    font-family: "museo-sans-rounded",sans-serif;
+    font-weight: 300;
   }
+}
+
+.overlay {
+    background: #252525;
+    display: block;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 99;
+    opacity: 0.6;
+}
+
+
+#spaces .container {
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.spaces.input-box {
+  margin-top:30px;
+}
+.spaces input {
+  padding: 1em; 
+  font-size: 0.8em; 
+  width: 134px;
+}
+.add-space { 
+  background: $sand; 
+  color: $teal;
+  padding: 1em;
+  font-size: 0.8em;
+  position: relative; 
+  top: 1px;
 }
