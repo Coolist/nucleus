@@ -33,8 +33,11 @@ for component in components
 
 app = angular.module 'nucleus', dependencies
 
+# Load API config
+api = require './common/api.coffee'
+
 # Routes
-app.config ($routeProvider) ->
+app.config ($routeProvider, $locationProvider) ->
   $routeProvider
     .when '/account/login',
       controller: 'accountCtrl'
@@ -53,3 +56,6 @@ app.config ($routeProvider) ->
       templateUrl: 'spaces/new/view.html'
     .otherwise
       redirectTo: '/places'
+
+  if api.config.html5
+    $locationProvider.html5Mode true

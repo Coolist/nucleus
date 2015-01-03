@@ -11,7 +11,7 @@ module.exports = (app, router) ->
   space = require './main/spaces/controller'
   device = require './main/devices/controller'
 
-  pre = '/api/1/'
+  pre = '/1/'
 
   # ---- API ---- #
 
