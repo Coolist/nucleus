@@ -38,6 +38,20 @@
         </ul>
       </div>
 
+      <div class="box">
+       <div class="top">
+         <a class="object-title">TITLE</a>
+       </div>
+       <div class="bottom">
+         <div class="motion detected">
+            <img class="icon motion-left" src="assets/images/icons/motion-left.svg" />
+             <span class="data">{{ device.states[propertyName] ? 'Motion' : 'No Motion' }}</span>
+            <img class="icon motion-right" src="assets/images/icons/motion-right.svg" />
+           </div>
+           <span class="last-detected">Last Detected <strong>11:32 AM</strong></span>
+         </div>
+     </div>
+
       <div class="box" ng-repeat="device in devices">
         <div class="top">
           <a class="object-title">{{ device.name }}</a>

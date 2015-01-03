@@ -1,0 +1,30 @@
+<ui-header></ui-header>
+
+<div class="box">
+	<div class="top">
+	 <a class="object-title">Motion Sensor</a>
+	</div>
+	<div class="bottom">
+	 <div class="motion detected">
+	    <img class="icon motion-left" src="assets/images/icons/motion-left.svg" />
+	     <span class="data">{{ device.states[propertyName] ? 'Motion' : 'No Motion' }}</span>
+	    <img class="icon motion-right" src="assets/images/icons/motion-right.svg" />
+	   </div>
+	   <span class="last-detected">Last Detected <strong>11:32 AM</strong></span>
+	 </div>
+</div>
+
+<div class="box">
+	<div class="top">
+	 <a class="object-title">Table Lamp</a>
+	</div>
+	<div class="bottom">
+		<div class="toggle green">
+		  <input type="checkbox" class="checkbox" />
+		  <div class="background"></div>
+		  <div class="switch"></div>
+		  <div class="state"><span class="on">On,</span><span class="off"> Off</span></div>
+	  </div>
+</div>
+
+

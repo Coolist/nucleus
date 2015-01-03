@@ -1,0 +1,211 @@
+// Motion Sensor
+
+.motion{
+  display: inline-block;
+  opacity: 0.25;
+  display: inline-flex;
+
+  .data {
+    margin:auto 0; 
+    width: 95px;
+    text-align: center;
+  }
+  .icon.motion-left {
+    height: 22px;
+  }
+  .icon.motion-right {
+    height: 22px;
+  }
+}
+
+.last-detected {
+  font-size: 0.8em;
+  display: inline-block;
+  margin-left: 40px;
+  opacity: 0.25;
+
+  strong {
+    display: block;
+  }
+}
+
+// Small Buttons
+
+
+.bttn--small {
+  padding: 0.25em 0.5em;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  display:inline-block;
+
+  &.light {  
+    background-color: $sand;
+    color: $greyText;
+
+    &:hover {
+      background-color: darken($sand, 5%);
+      color: $blackText;
+    }
+  }
+
+  &.dark {
+    background-color: $greyText;
+    color: #FFF;
+
+    &:hover {
+      background-color: darken($greyText, 20%);
+      color: #FFF;
+    }
+  }
+
+  &.light-clear {
+    background: transparent;
+    color: $greyText;
+
+    &:hover{
+      color: $blackText;
+    }
+  }
+
+  &.dark-clear{
+    color: $lightGreyText;
+
+    &:hover{
+      color: #FFF;
+    }
+  }
+}
+
+// Regular Buttons
+
+.bttn--regular{
+  padding: 0.5em 1em;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  display:inline-block;
+
+  &.light {  
+    background-color: $sand;
+    color: $greyText;
+
+    &:hover {
+      background-color: darken($sand, 5%);
+      color: $blackText;
+    }
+  }
+
+  &.dark {
+    background-color: $greyText;
+    color: #FFF;
+
+    &:hover {
+      background-color: darken($greyText, 20%);
+      color: #FFF;
+    }
+  }
+  
+  &.light-clear {
+    background: transparent;
+    color: $greyText;
+
+    &:hover{
+      color: $blackText;
+      background-color: lighten($lightGreyText, 25%);
+    }
+  }
+
+  &.dark-clear{
+    color: $lightGreyText;
+
+    &:hover{
+      color: #FFF;
+    }
+  }
+}
+
+// Toggle
+
+.toggle {
+  display: block;
+  width: 40px;
+  height: 25px;
+  box-sizing: border-box;
+  position: relative;
+
+  .checkbox {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 10;
+  }
+
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #CECECE;
+    transition: all 0.25s ease;
+    border-radius: 100px;
+    z-index: 8;
+  }
+
+  .switch {
+    position: absolute;
+    background: #FFF;
+    border-radius: 100px;
+    width: 23px;
+    height: 23px;
+    position: relative;
+    top: 1px;
+    left: 16px;
+    transition: all 0.25s cubic-bezier(.08,1.02,.84,.98);
+    z-index: 9;
+  }
+
+  .state {
+    width: 140px; 
+    position: absolute;
+    top: 3px;
+    left: 50px;
+
+    .off {
+      font-weight: 500;
+      opacity: 1;
+      cursor: pointer;
+    }
+    .on {
+      opacity: 0.25;
+      cursor: pointer;
+    }
+  }
+
+  &.green{
+    .checkbox:checked ~ .background {
+      background-color: $green;
+    }
+  }
+
+  &.yellow{
+    .checkbox:checked ~ .background {
+      background-color: $yellow;
+    }
+  }
+
+  .checkbox:checked ~ .switch {
+    transform: translateX(-15px);
+  }
+
+  .checkbox:checked ~.state .on {
+    opacity: 1;
+    font-weight: 500;
+  }
+
+  .checkbox:checked ~.state .off {
+    opacity: 0.5;
+    font-weight: 100;
+  }
+}

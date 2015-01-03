@@ -18,6 +18,7 @@ components = [
   require './places'
   require './spaces'
   require './devices'
+  require './styleguide'
 ]
 
 dependencies = [
@@ -54,6 +55,10 @@ app.config ($routeProvider, $locationProvider) ->
     .when '/places/:placeId/spaces/new',
       controller: 'spacesNewCtrl'
       templateUrl: 'spaces/new/view.html'
+    .when '/styleguide',
+      templateUrl: 'styleguide/view.html'
+    .when '/devices',
+      templateUrl: 'devices/view.html'
     .otherwise
       redirectTo: '/places'
 

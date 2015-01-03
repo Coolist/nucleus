@@ -1,0 +1,32 @@
+@import "variables";
+
+#devices.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+
+.devices.left{
+	order: 0;
+	flex: 1 1 auto;
+  align-self: auto;
+  color:#FFF;
+  margin-left:115px;
+  display:flex;
+}
+
+.devices.right{
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  min-width:350px;
+  background-color:$sand;
+  height: 100vh;
+  padding: 2em;
+  box-sizing: border-box;
+  display:flex;
+}
