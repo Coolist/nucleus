@@ -1,9 +1,13 @@
 // Motion Sensor
 
-.motion{
+.motion {
   display: inline-block;
   opacity: 0.25;
   display: inline-flex;
+
+  &.detected {
+    opacity: 0.75;
+  }
 
   .data {
     margin:auto 0; 
