@@ -19,9 +19,10 @@
   .devices.list{
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-content: stretch;
+    align-items: flex-start;
 
     .group{    
       order: 0;
@@ -51,7 +52,7 @@
         max-width: 80px;
 
         .description{
-          margin-top: 10px;
+          margin: 10px 0 20px 0;
           font-size: 0.9em;
         }
 
@@ -65,13 +66,14 @@
           opacity: 0;
           z-index: 10;
           margin: 0;
+
         }
 
-        .checkbox:checked ~ .image{
+        .checkbox:checked ~ .image {
           background-color: $green;
         }
 
-        .image{
+        .image {
           margin-top:-82px;
           height:80px;
           width:80px;
@@ -82,11 +84,23 @@
           background-position-y: center;
           background-repeat: no-repeat;
           background-blend-mode: multiply;
+          box-sizing: border-radius;
+
 
         }
         .select-device{
           width: 80px;
           height: 80px;
+
+          &:hover {
+            .image {
+            box-sizing: border-box;
+            border:2px solid $green;
+
+            }
+
+          }
+
         }
       }
     }
