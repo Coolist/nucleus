@@ -48,7 +48,7 @@
               <input type="checkbox" class="checkbox" ng-model="device.states[propertyName]" ng-change="action.setState(device, propertyName, device.states[propertyName])" />
               <div class="background"></div>
               <div class="switch"></div>
-              <div class="state"><span class="on">On,</span><span class="off"> Off</span></div>
+              <div class="state"><span class="on" ng-click="device.states[propertyName] = true; action.setState(device, propertyName, true)">On,</span><span class="off" ng-click="device.states[propertyName] = false; action.setState(device, propertyName, false)"> Off</span></div>
             </div>
             <div ng-switch-when="motion" class="motion" ng-class="device.states[propertyName] ? 'detected' : ''">
               <img class="icon motion-left" src="assets/images/icons/motion-left.svg" />

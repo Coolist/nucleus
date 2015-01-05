@@ -1,176 +1,169 @@
 @import "variables";
 @import "devices";
 
-#devices.container{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: stretch;
-  align-items: flex-start;
-}
+#devices {
+  position: relative;
+  min-height: calc(100% - 90px);
 
-.devices.left{
-	order: 0;
-	flex: 1 1 auto;
-  align-self: auto;
-  margin-left: 115px;
+  h2 {
+    margin-top: 0;
+    font-weight: 500;
+  }
 
-  .devices.list{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: flex-start;
+  .description {
+    font-size: 1.05em;
+    color: $greyBlueRenameMePlease;
+    font-weight: 300;
+  }
 
-    .group{    
-      order: 0;
-      flex: 0 1 auto;
-      align-self: auto;
-      margin-right: 50px;
-      vertical-align: top;
+  .devices.left {
+    padding: 3em 350px 3em 115px;
+    box-sizing: border-box;
 
-      .title{
-        order: 0;
-        flex: 1 1 auto;
-        align-self: auto;
+    .devices.list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: stretch;
+      align-items: flex-start;
 
-        h3 {
-          font-size: 0.9em;
-          font-weight: 500;
-          opacity:0.4;
-        }
-      }
-
-      .item {
-        margin-right: 20px;
+      .group {
         order: 0;
         flex: 0 1 auto;
         align-self: auto;
-        display: inline-block;
-        max-width: 80px;
+        margin-right: 50px;
+        vertical-align: top;
 
-        .description{
-          margin: 10px 0 20px 0;
-          font-size: 0.8em;
+        .title {
+          order: 0;
+          flex: 1 1 auto;
+          align-self: auto;
+
+          h3 {
+            font-size: 0.9em;
+            font-weight: 500;
+            opacity: 0.4;
+          }
         }
 
-        .checkbox {
-          cursor: pointer;
-          position: inherit;
-          top: 0;
-          left: 0;
-          width: 80px;
-          height: 80px;
-          opacity: 0;
-          z-index: 10;
-          margin: 0;
+        .item {
+          margin-right: 20px;
+          order: 0;
+          flex: 0 1 auto;
+          align-self: auto;
+          display: inline-block;
+          max-width: 80px;
 
-        }
-
-        .checkbox:checked ~ .image {
-          background-color: $green;
-        }
-
-        .image {
-          margin-top:-82px;
-          height:80px;
-          width:80px;
-          border-radius:2px;
-          background-color: $sand;
-          background-size: 40px auto;
-          background-position-x: center;
-          background-position-y: center;
-          background-repeat: no-repeat;
-          background-blend-mode: multiply;
-          box-sizing: border-radius;
-
-
-        }
-        .select-device{
-          width: 80px;
-          height: 80px;
-
-          &:hover {
-            .image {
-            box-sizing: border-box;
-            border:2px solid $green;
-
-            }
-
+          .description {
+            margin: 10px 0 20px 0;
+            font-size: 0.8em;
+            color: $greyText;
           }
 
+          .checkbox {
+            cursor: pointer;
+            position: inherit;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+            opacity: 0;
+            z-index: 10;
+            margin: 0;
+          }
+
+          .checkbox:checked ~ .image {
+            background-color: $green;
+          }
+
+          .image {
+            margin-top: -82px;
+            height: 80px;
+            width: 80px;
+            border-radius: 2px;
+            background-color: $sand;
+            background-size: 40px auto;
+            background-position-x: center;
+            background-position-y: center;
+            background-repeat: no-repeat;
+            background-blend-mode: multiply;
+            box-sizing: border-radius;
+          }
+
+          .select-device {
+            width: 80px;
+            height: 80px;
+
+            &:hover {
+              .image {
+                box-sizing: border-box;
+                border: 2px solid $green;
+              }
+            }
+          }
         }
       }
     }
   }
-}
 
-.devices.right {
-  order: 0;
-  flex: 0 1 auto;
-  align-self: auto;
-  min-width: 350px;
-  max-width: 350px;
-  background-color:$sand;
-  height: 100vh;
-  padding: 3em;
-  box-sizing: border-box;
-
-  .description{
-    margin-bottom: 40px;
-    font-weight: 100;
-    line-height: 1.5em;
-  }
-  h2{
-    margin-top: 0;
-    font-weight: 500;
-  }
-}
-
-
-.devices.input-box{
-
-  margin-top:40px;
-
-  input {
-    padding: 1.1em;
-    font-size: 1em;
-    border: 2px solid #E3E4E6;
-    border-right: 0;
+  .devices.right {
+    width: 350px;
+    background-color: $sand;
+    height: 100%;
+    padding: 3em;
     box-sizing: border-box;
-    background: transparent;
-    border-radius: 2px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: auto;
+
+    .description {
+      margin-bottom: 40px;
+      font-weight: 100;
+      line-height: 1.5em;
+    }
   }
 
-  .select-space{
-    border: 2px solid #E3E4E6;
-    border-left: 0;
-    font-size: 1em;
-    box-sizing: border-box;
-    display:inline-block;
-    vertical-align:top;
-    padding: 1.1em;
-    margin-left:-1px;
-    border-radius: 2px;
+  .devices.input-box {
+    margin-top: 40px;
+
+    input {
+      padding: 1.1em;
+      font-size: 1em;
+      border: 2px solid #E3E4E6;
+      border-right: 0;
+      box-sizing: border-box;
+      background: transparent;
+      border-radius: 2px;
+    }
+
+    .select-space {
+      border: 2px solid #E3E4E6;
+      border-left: 0;
+      font-size: 1em;
+      box-sizing: border-box;
+      display: inline-block;
+      vertical-align: top;
+      padding: 1.1em;
+      margin-left: -1px;
+      border-radius: 2px;
+    }
+
+    .add-device {
+      background-color: $green;
+      color: #FFF;
+      font-size: 1em;
+      box-sizing: border-box;
+      display: inline-block;
+      vertical-align: top;
+      padding: 1.2em;
+      border-radius: 2px;
+      margin-left: 10px;
+    }
   }
-  .add-device{
-    background-color: $green;
-    color: #FFF;
-    font-size:1em;
-    box-sizing: border-box;
-    display:inline-block;
-    vertical-align:top;
-    padding: 1.2em;
-    border-radius: 2px;
-    margin-left:10px;
-  }
-}
 
-
-
-a.connect {
+  a.connect {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -181,39 +174,39 @@ a.connect {
     font-size: 1em;
 
     &:hover {
-      .right{
+      .right {
         color: $blackText;
       }
-      .left{
+
+      .left {
         background-color: #BEBEBE;
       }
     }
 
-  .left{
-    width: 20px; 
-    order: 0;
-    flex: 0 1 auto;
-    align-self: auto;
-    line-height: 21px;
-    text-align: center;
-    margin: auto 20px auto 0;
-    background-color: #D8D8D8;
-    color: #FFF;
-    font-size: 0.8em;
-    border-radius: 2px;
+    .left {
+      width: 20px;
+      order: 0;
+      flex: 0 1 auto;
+      align-self: auto;
+      line-height: 21px;
+      text-align: center;
+      margin: auto 20px auto 0;
+      background-color: #D8D8D8;
+      color: #FFF;
+      font-size: 0.8em;
+      border-radius: 2px;
     }
 
-  .right{
-    order: 0;
-    flex: 1 1 auto;
-    align-self: auto;
-    color: lighten($blackText, 30%);
-    padding: 10px 0;
+    .right {
+      order: 0;
+      flex: 1 1 auto;
+      align-self: auto;
+      color: lighten($blackText, 30%);
+      padding: 10px 0;
+    }
   }
-}
 
-a.connected {
-
+  a.connected {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -223,35 +216,35 @@ a.connected {
     margin-bottom: 20px;
 
     &:hover {
-      .right{
+      .right {
         color: $blackText;
       }
     }
 
-  .left{
-    width: 20px; 
-    order: 0;
-    flex: 0 1 auto;
-    align-self: auto;
-    line-height: 20px;
-    text-align: center;
-    margin: auto 20px auto 0;
-    color: $green;
-    font-size: 1.3em;
+    .left {
+      width: 20px;
+      order: 0;
+      flex: 0 1 auto;
+      align-self: auto;
+      line-height: 20px;
+      text-align: center;
+      margin: auto 20px auto 0;
+      color: $green;
+      font-size: 1.3em;
     }
 
-  .right{
-    order: 0;
-    flex: 1 1 auto;
-    align-self: auto;
-    color: lighten($blackText, 30%);
-    padding: 10px 0;
+    .right {
+      order: 0;
+      flex: 1 1 auto;
+      align-self: auto;
+      color: lighten($blackText, 30%);
+      padding: 10px 0;
 
-    .label{
-      display: block;
-      font-size: 0.8em;
-      opacity: 0.5;
+      .label {
+        display: block;
+        font-size: 0.8em;
+        opacity: 0.5;
+      }
     }
   }
 }
-

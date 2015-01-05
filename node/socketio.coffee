@@ -64,14 +64,7 @@ module.exports = (http) ->
       else if JSON.stringify(users[socket.id].devices) isnt JSON.stringify(data)
         devices.update data, users[socket.id]
 
-    ###
-    socket.emit 'device:setState',
-      id: 'Lightswitch-1_0-221425K1300369'
-      type: 'power'
-      value: true
-    ###
-
     socket.on 'disconnect', () ->
       delete users[socket.id]
 
-  console.log 'Socket IO server init...'
+  console.log 'Socket IO server started.'

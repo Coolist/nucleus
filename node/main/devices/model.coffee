@@ -97,24 +97,16 @@ exports.updateState = (params) ->
       db.services.findOne
         _id: object.service
       .then (serviceObject) ->
-        switch serviceObject.service
-          when 'nucleus-center'
-            for key, value of params.body
-              exists = false
-
-              # Check to see if the property exists and is writeable
-              for keyP, valueP of object.properties
-                if key is keyP and valueP is 2
-                  exists = true
-
-              if exists
-                do (deviceMQ, object, key, value) ->
-                  deviceMQ.publish 'device-mq', JSON.stringify
-                    device: object._id
-                    id: object.service_id
-                    place: object.place
-                    property: key
-                    value: value
+        if serviceObject.service is 'nucleus-center'
+          for key, value of params.body
+            if checkProperty object.properties, key
+              do (deviceMQ, object, key, value) ->
+                deviceMQ.publish 'device-mq', JSON.stringify
+                  device: object._id
+                  id: object.service_id
+                  place: object.place
+                  property: key
+                  value: value
     else
       throw new Error errors.build 'A device with that ID was not found.', 404
     
@@ -132,3 +124,16 @@ exports.delete = (params) ->
     else
       throw new Error errors.build 'A device with that ID was not found.', 404
     return ret
+
+# Check if property exists
+checkProperty = (properties, name, writeable = true) ->
+  if writeable?
+    w = 2
+  else
+    w = 1
+
+  for key, value of properties
+    if name is key and value is w
+      return true
+
+  return false

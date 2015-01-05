@@ -16,4 +16,4 @@ require('./node/socketio')(http);
 //Start server
 http.listen(3000);
 
-console.log('Node ' + config.server + ' server running on port 3000');
+console.log('Node ' + config.server + ' server running on port 3000.');
