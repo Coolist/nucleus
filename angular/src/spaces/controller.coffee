@@ -4,7 +4,7 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource, devicesResource, 
   realtimeFactory.checkAuth $routeParams.placeId
 
   # Temp loading var
-  $scope.loading = true
+  $scope.loading = 0
 
   # Realtime device state update
   $scope.$on 'socket:device:state', (ev, data) ->
@@ -13,21 +13,29 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource, devicesResource, 
         for state, value of data.states
           device.states[state] = value if device.states[state]?
 
+  $scope.loading++
   spacesResource.query
     placeId: $routeParams.placeId
   , (spaces) ->
 
     if spaces.length is 0
       $location.path 'places/' + $routeParams.placeId + '/spaces/new'
+    else
+      if $routeParams.space?
+        for space in spaces
+          if $routeParams.space is space.id
+            $scope.space = space
 
     $scope.spaces = spaces
-    $scope.loading = false
+    $scope.loading--
 
+  $scope.loading++
   devicesResource.query
     placeId: $routeParams.placeId
   , (devices) ->
 
     $scope.devices = devices
+    $scope.loading--
 
   $scope.action =
     add: ->
@@ -54,6 +62,8 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource, devicesResource, 
       update = {}
       update[name] = value
 
+      console.log name, value
+
       devicesResource.updateState
         placeId: $routeParams.placeId
         deviceId: device.id
@@ -70,10 +80,11 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource, devicesResource, 
         , (success) ->
           $scope.loading = false
 
-###goto:
-  tests: (space) ->
-    $location.path 'places/' + $routeParams.placeId + '/spaces/' + space.id
-###
+    goto:
+      space: (space) ->
+        $location.path 'places/' + $routeParams.placeId
+        .search
+          space: if space? then space.id else undefined
   
 
 module.exports = [

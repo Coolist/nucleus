@@ -2,7 +2,6 @@
 
 .spaces--new {
   > div {
-    
     .container {
       max-width: 700px;
       padding: 150px 0;
@@ -51,7 +50,7 @@
 .devices--new {
   > div {
     border-bottom: 1px solid #F0F0F0;
-    
+
     .container {
       max-width: 700px;
       padding: 150px 0;
@@ -109,7 +108,7 @@
   }
 }
 
-#spaces .container{
+#spaces .container {
   margin: 60px 60px 60px 115px;
   display: flex;
   flex-direction: row;
@@ -117,44 +116,43 @@
   justify-content: flex-start;
   align-content: stretch;
   align-items: flex-start;
+}
 
-  }
-
-.spaces.left{
+.spaces.left {
   order: 0;
   flex: 0 1 auto;
   align-self: auto;
   min-width: 200px;
   padding-right: 75px;
 
-  .add-space { 
-    background: $sand; 
+  .add-space {
+    background: $sand;
     color: $teal;
     padding: 1em;
     font-size: 0.8em;
-    position: relative; 
+    position: relative;
     top: 1px;
   }
 
   ul {
-    list-style-type:none;
-    padding:0;
+    list-style-type: none;
+    padding: 0;
   }
 
-  ul.spaces.sub-nav li{
-      margin-bottom: 10px; 
-      font-weight: 100;
-    }
-  
+  ul.spaces.sub-nav li {
+    margin-bottom: 10px;
+    font-weight: 100;
+  }
+
   ul.spaces.nav {
     margin: -15px 0 0 0;
-  
+
     li {
       display: inline-block;
       font-size: 0.7em;
       margin: 0;
 
-      &:first-child{
+      &:first-child {
         margin-right: 10px;
       }
 
@@ -162,27 +160,25 @@
         color: $lightGreyText;
         font-weight: 100;
 
-        &:hover{
+        &:hover {
           color: $blackText;
         }
-      }  
+      }
     }
   }
 
   .spaces.input-box {
-    margin-top:30px;
+    margin-top: 30px;
   }
+
   .spaces input {
-    padding: 1em; 
-    font-size: 0.8em; 
+    padding: 1em;
+    font-size: 0.8em;
     width: 134px;
   }
-} 
+}
 
 .spaces.right {
-  order: 0;
-  flex: 1 1 auto;
-  align-self: auto;
 
   .info {
     margin: 0 0 60px 0;
@@ -191,28 +187,28 @@
   .label {
     display: block;
     font-size: 0.8em;
-    color: lighten($greyText, 25%); 
-    font-weight: 100; 
+    color: lighten($greyText, 25%);
+    font-weight: 100;
     margin-bottom: 5px;
-    }
+  }
 
   .title {
     font-size: 1.8em;
-    font-weight: 300; 
-    padding: 0 0 30px 0; 
+    font-weight: 300;
+    padding: 0 0 30px 0;
     border-bottom: 1px solid lighten($greyText, 55%);
   }
 
-  ul.item{
-    list-style-type: none; 
-    padding: 0; 
-    margin: 0; 
+  ul.item {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 
-    li { 
+    li {
       display: inline-block;
       padding: 15px 50px 0 20px;
       border-right: 1px solid lighten($greyText, 55%);
-  
+
       &:last-child {
         border: 0;
       }
@@ -225,71 +221,74 @@
 }
 
 a.spaces.add-device {
+  opacity: 1;
+  width: 50px;
+  height: 50px;
+  background-color: $sand;
+  display: inline-block;
+  text-align: center;
+  line-height: 55px;
+
+  .plus {
+    margin: auto;
     opacity: 1;
-    width: 50px;
-    height: 50px;
-    background-color: $sand;
-    display: inline-block;
-    text-align: center;
-    line-height: 55px;
+    font-size: 1.5em;
+    line-height: 0;
+    color: $lightGreyText;
+  }
 
+  &:hover {
     .plus {
-      margin: auto;
-      opacity: 1;
-      font-size: 1.5em;
-      line-height: 0;
-      color: $lightGreyText;
+      color: $greyText;
     }
-
-    &:hover {
-      .plus {
-        color:$greyText;
-      }
-    }
+  }
 }
 
-.box {
-  background-color: $sand;
-  min-width: 300px;
-  width: 300px;
-  min-height: 125px;
-  margin: 0 10px 10px 0;
-  display: inline-block;
-  vertical-align: top;
-  padding: 0 25px 0 25px;
-  box-sizing: border-box;
+.devices {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 
-  .top {
-    font-size: 1.25em;
-    min-height: 80px;
-    display: -webkit-flex;
-    display: flex;
-    min-width: 100%;
+  .box {
+    background-color: $sand;
+    min-width: 300px;
+    width: 300px;
+    min-height: 125px;
+    margin: 0 10px 10px 0;
+    vertical-align: top;
+    padding: 0 25px 0 25px;
+    box-sizing: border-box;
 
-    .object-title {
-      margin: auto 0;
-      color: $blackText;
-      font-weight: 300;
+    .top {
+      font-size: 1.25em;
+      min-height: 80px;
+      display: -webkit-flex;
+      display: flex;
+      min-width: 100%;
+
+      .object-title {
+        margin: auto 0;
+        color: $blackText;
+        font-weight: 300;
+      }
+    }
+
+    .middle {
+      margin-bottom: 15px;
+      height: 135px;
+      overflow: hidden;
+    }
+
+    .bottom {
+      min-width: 100%;
     }
   }
-
-  .middle {
-    margin-bottom: 15px;
-    height: 135px;
-    overflow: hidden;
-  }
-
-  .bottom {
-    height: 45px;
-    min-width: 100%;
-  }
-} 
+}
 
 .status {
-
-  .background { 
+  .background {
     display: inline-block;
-    width: 100px; 
+    width: 100px;
     height: 10px;
     background: $green;
     border-radius: 2px;
@@ -304,7 +303,6 @@ a.spaces.add-device {
     border-radius: 1px;
   }
 }
-
 
 .form {
   font-family: "museo-sans-rounded",sans-serif;
@@ -325,4 +323,3 @@ a.spaces.add-device {
     font-weight: 300;
   }
 }
-

@@ -1,9 +1,7 @@
-<ui-header></ui-header>
+<ui-header loading="loading"></ui-header>
 <places place="place" access="access"></places>
-<img src="assets/images/loading.svg" class="loading" ng-class="{show: loading}" />
 <div id="spaces">
   <div class="container">
-
     <div class="spaces left">
       
       <ul class="spaces nav">
@@ -12,8 +10,11 @@
       </ul>
 
       <ul class="spaces sub-nav">
+        <li>
+          <a ng-click="action.goto.space()">All Spaces</a>
+        </li>
         <li ng-repeat="space in spaces">
-          <a ng-click="action.delete(space)" ng-show="access >= 2">[x]</a> <a>{{ space.name }}, </a>
+          <a ng-click="action.delete(space)" ng-show="access >= 2">[x]</a> <a ng-click="action.goto.space(space)">{{ space.name }}</a>
         </li>
         <li ng-show="access >= 2">
           <div class="spaces input-box">
@@ -25,7 +26,7 @@
 
     <div class="spaces right">
       <div class="spaces info">
-        <div class="title">Living Room</div>
+        <div class="title">{{ space != undefined ? space.name : 'All Spaces' }}</div>
         <ul class="item">
           <li>
             <span class="label">Temperature</span>
@@ -38,31 +39,40 @@
         </ul>
       </div>
 
-      <div class="box" ng-repeat="device in devices">
-        <div class="top">
-          <a class="object-title">{{ device.name }}</a>
-        </div>
-        <div class="bottom">
-          <div class="element" ng-repeat="(propertyName, propertyValue) in device.properties" ng-switch="propertyName">
-            <div ng-switch-when="power" class="toggle green">
-              <input type="checkbox" class="checkbox" ng-model="device.states[propertyName]" ng-change="action.setState(device, propertyName, device.states[propertyName])" />
-              <div class="background"></div>
-              <div class="switch"></div>
-              <div class="state"><span class="on" ng-click="device.states[propertyName] = true; action.setState(device, propertyName, true)">On,</span><span class="off" ng-click="device.states[propertyName] = false; action.setState(device, propertyName, false)"> Off</span></div>
-            </div>
-            <div ng-switch-when="motion" class="motion" ng-class="device.states[propertyName] ? 'detected' : ''">
-              <img class="icon motion-left" src="assets/images/icons/motion-left.svg" />
-                <span class="data">{{ device.states[propertyName] ? 'Motion' : 'No Motion' }}</span>
-              <img class="icon motion-right" src="assets/images/icons/motion-right.svg" />
+      <div class="devices">
+        <div class="box" ng-repeat="device in devices">
+          <div class="top">
+            <a class="object-title">{{ device.name }}</a>
+          </div>
+          <div class="bottom">
+            <div class="element" ng-repeat="(propertyName, propertyValue) in device.properties" ng-switch="propertyName">
+              <!-- Power -->
+              <div ng-switch-when="power" class="toggle green">
+                <input type="checkbox" class="checkbox" ng-model="device.states[propertyName]" ng-change="action.setState(device, propertyName, device.states[propertyName])" />
+                <div class="background"></div>
+                <div class="switch"></div>
+                <div class="state"><span class="on" ng-click="device.states[propertyName] = true; action.setState(device, propertyName, true)">On,</span><span class="off" ng-click="device.states[propertyName] = false; action.setState(device, propertyName, false)"> Off</span></div>
+              </div>
+
+              <!-- Motion -->
+              <div ng-switch-when="motion" class="motion" ng-class="device.states[propertyName] ? 'detected' : ''">
+                <img class="icon motion-left" src="assets/images/icons/motion-left.svg" />
+                  <span class="data">{{ device.states[propertyName] ? 'Motion' : 'No Motion' }}</span>
+                <img class="icon motion-right" src="assets/images/icons/motion-right.svg" />
+              </div>
+
+              <!-- Brightness -->
+              <div ng-switch-when="brightness" ng-show="device.states['power']">
+                <input type="range" ng-model="device.states[propertyName]" ng-mouseup="action.setState(device, propertyName, device.states[propertyName])" min="0" max="100" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
       <a class="spaces add-device">
         <span class="add-device plus">&#43;</span>
       </a>
-    </div>
+      </div>
     </div> 
   </div>
 </div>

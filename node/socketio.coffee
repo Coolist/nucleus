@@ -21,6 +21,7 @@ module.exports = (http) ->
       
       for userId, user of users
         if user.place is m.place and user.type is 'center'
+          
           user.socket.emit 'device:setState',
             id: m.id
             type: m.property
@@ -56,12 +57,14 @@ module.exports = (http) ->
           if device.id is data.id
             device.states[data.type] = data.value
             devices.update [ device ], users[socket.id]
+            break
 
     socket.on 'center:devices', (data) ->
       if not users[socket.id].devices?
         users[socket.id].devices = data
         devices.update data, users[socket.id]
       else if JSON.stringify(users[socket.id].devices) isnt JSON.stringify(data)
+        users[socket.id].devices = data
         devices.update data, users[socket.id]
 
     socket.on 'disconnect', () ->

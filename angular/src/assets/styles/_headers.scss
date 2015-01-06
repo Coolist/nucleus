@@ -8,6 +8,10 @@
       height: 30px;
       opacity: 0.25;
       float: left;
+
+      &.loading {
+        animation: loading-spinner linear 1s infinite;
+      }
     }
 
     ul {
@@ -19,7 +23,6 @@
       &.left {
         float: left;
         padding-left: 25px;
-
       }
 
       &.right {
@@ -30,26 +33,35 @@
 
           &:hover {
             opacity: 1;
+          }
         }
       }
-    }
 
-    li {
-      font-size: 16px;
-      font-weight: 400;
-      color: #FFF;
-      display: inline-block;
-      padding: 0.35em 1.2em;
-      cursor: pointer;
+      li {
+        font-size: 16px;
+        font-weight: 400;
+        color: #FFF;
+        display: inline-block;
+        padding: 0.35em 1.2em;
+        cursor: pointer;
 
-      span {
-        padding-bottom: 2px;
-      }
+        span {
+          padding-bottom: 2px;
+        }
 
-      &:hover span {
-        border-bottom: 2px solid #74C6D1;
+        &:hover span {
+          border-bottom: 2px solid #74C6D1;
+        }
       }
     }
   }
 }
+
+@keyframes loading-spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
