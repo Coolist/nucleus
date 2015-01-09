@@ -46,6 +46,7 @@
           </div>
           <div class="bottom">
             <div class="element" ng-repeat="(propertyName, propertyValue) in device.properties" ng-switch="propertyName">
+
               <!-- Power -->
               <div ng-switch-when="power" class="toggle green">
                 <input type="checkbox" class="checkbox" ng-model="device.states[propertyName]" ng-change="action.setState(device, propertyName, device.states[propertyName])" />
@@ -64,6 +65,11 @@
               <!-- Brightness -->
               <div ng-switch-when="brightness" ng-show="device.states['power']">
                 <input type="range" ng-model="device.states[propertyName]" ng-mouseup="action.setState(device, propertyName, device.states[propertyName])" min="0" max="100" />
+              </div>
+
+              <!-- Colour Temperature -->
+              <div ng-switch-when="color_temperature" ng-show="device.states['power']">
+                <input type="range" ng-model="device.states[propertyName]" ng-mouseup="action.setState(device, propertyName, device.states[propertyName])" min="153" max="500" />
               </div>
             </div>
           </div>

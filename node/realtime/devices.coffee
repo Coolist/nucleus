@@ -52,6 +52,27 @@ exports.update = (data, user) ->
         service: user.service
         states: device.states
 
+      switch device.name
+        when 'wemo:wallSwitch:1'
+          update.type = 'switch'
+          update.properties =
+            power: 2
+        when 'wemo:lightSwitch:1'
+          update.type = 'switch'
+          update.properties =
+            power: 2
+        when 'wemo:motion:1'
+          update.type = 'sensor'
+          update.properties =
+            motion: 1
+        when 'hue:light:1'
+          update.type = 'light'
+          update.properties =
+            power: 2
+            color: 2
+            brightness: 2
+            color_temperature: 2
+
       do (device, update) ->
         db.devices.findOne
           service_id: device.id
@@ -70,26 +91,6 @@ exports.update = (data, user) ->
             update._id = db.id()
             update.activated = false
             update.name = device.local_name
-
-            switch device.name
-              when 'wemo:wallSwitch:1'
-                update.type = 'switch'
-                update.properties =
-                  power: 2
-              when 'wemo:lightSwitch:1'
-                update.type = 'switch'
-                update.properties =
-                  power: 2
-              when 'wemo:motion:1'
-                update.type = 'sensor'
-                update.properties =
-                  motion: 1
-              when 'hue:light:1'
-                update.type = 'light'
-                update.properties =
-                  power: 2
-                  color: 2
-                  brightness: 2
 
             db.devices.insert update
             .then (object) ->

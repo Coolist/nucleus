@@ -34,6 +34,7 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource, devicesResource, 
     placeId: $routeParams.placeId
   , (devices) ->
 
+    console.log devices
     $scope.devices = devices
     $scope.loading--
 
@@ -61,8 +62,6 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource, devicesResource, 
     setState: (device, name, value) ->
       update = {}
       update[name] = value
-
-      console.log name, value
 
       devicesResource.updateState
         placeId: $routeParams.placeId
