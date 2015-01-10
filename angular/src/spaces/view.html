@@ -63,13 +63,19 @@
               </div>
 
               <!-- Brightness -->
-              <div ng-switch-when="brightness" ng-show="device.states['power']">
+              <div ng-switch-when="brightness" class="slider" ng-show="device.states['power']">
                 <input type="range" ng-model="device.states[propertyName]" ng-mouseup="action.setState(device, propertyName, device.states[propertyName])" min="0" max="100" />
               </div>
 
               <!-- Colour Temperature -->
-              <div ng-switch-when="color_temperature" ng-show="device.states['power']">
-                <input type="range" ng-model="device.states[propertyName]" ng-mouseup="action.setState(device, propertyName, device.states[propertyName])" min="153" max="500" />
+              <div ng-switch-when="color_temperature" class="color-palette" ng-show="device.states['power']">
+                <ul>
+                  <li ng-class="{selected: device.states[propertyName] == 400}" ng-click="action.setState(device, propertyName, 400)">5 <span ng-show="device.states[propertyName] == 400">SELECTED</span></li>
+                  <li ng-class="{selected: device.states[propertyName] == 357}" ng-click="action.setState(device, propertyName, 357)">4 <span ng-show="device.states[propertyName] == 357">SELECTED</span></li>
+                  <li ng-class="{selected: device.states[propertyName] == 294}" ng-click="action.setState(device, propertyName, 294)">3 <span ng-show="device.states[propertyName] == 294">SELECTED</span></li>
+                  <li ng-class="{selected: device.states[propertyName] == 200}" ng-click="action.setState(device, propertyName, 200)">2 <span ng-show="device.states[propertyName] == 200">SELECTED</span></li>
+                  <li ng-class="{selected: device.states[propertyName] == 153}" ng-click="action.setState(device, propertyName, 153)">1 <span ng-show="device.states[propertyName] == 153">SELECTED</span></li>
+                </ul>
               </div>
             </div>
           </div>

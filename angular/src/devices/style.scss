@@ -164,14 +164,15 @@
   }
 
   a.connect {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: flex-start;
     margin-bottom: 20px;
     font-size: 1em;
+    display: block;
+
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
 
     &:hover {
       .right {
@@ -185,9 +186,6 @@
 
     .left {
       width: 20px;
-      order: 0;
-      flex: 0 1 auto;
-      align-self: auto;
       line-height: 21px;
       text-align: center;
       margin: auto 20px auto 0;
@@ -195,25 +193,25 @@
       color: #FFF;
       font-size: 0.8em;
       border-radius: 2px;
+      float: left;
     }
 
     .right {
-      order: 0;
-      flex: 1 1 auto;
-      align-self: auto;
       color: lighten($blackText, 30%);
-      padding: 10px 0;
+      float: left;
+      padding: 1px 0;
     }
   }
 
   a.connected {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: flex-start;
     margin-bottom: 20px;
+    display: block;
+
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
 
     &:hover {
       .right {
@@ -223,22 +221,18 @@
 
     .left {
       width: 20px;
-      order: 0;
-      flex: 0 1 auto;
-      align-self: auto;
       line-height: 20px;
       text-align: center;
       margin: auto 20px auto 0;
       color: $green;
       font-size: 1.3em;
+      float: left;
+      padding: 7px 0;
     }
 
     .right {
-      order: 0;
-      flex: 1 1 auto;
-      align-self: auto;
       color: lighten($blackText, 30%);
-      padding: 10px 0;
+      float: left;
 
       .label {
         display: block;
