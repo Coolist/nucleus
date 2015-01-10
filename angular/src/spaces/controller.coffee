@@ -34,7 +34,6 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource, devicesResource, 
     placeId: $routeParams.placeId
   , (devices) ->
 
-    console.log devices
     $scope.devices = devices
     $scope.loading--
 
@@ -56,6 +55,8 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource, devicesResource, 
             active: false
             archived: false
           $scope.loading = false
+
+          $scope.action.goto.space space
       else
         $scope.loading = false
 
@@ -84,6 +85,10 @@ spacesCtrl = ($scope, $routeParams, $location, spacesResource, devicesResource, 
         $location.path 'places/' + $routeParams.placeId
         .search
           space: if space? then space.id else undefined
+      addDevice: (space) ->
+        $location.path 'places/' + $routeParams.placeId + '/spaces/' + space.id + '/devices/add'
+        .search
+          space: undefined
   
 
 module.exports = [

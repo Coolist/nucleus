@@ -40,7 +40,7 @@
       </div>
 
       <div class="devices">
-        <div class="box" ng-repeat="device in devices">
+        <div class="box" ng-repeat="device in devices" ng-show="space == undefined || (space != undefined && space.id == device.space)">
           <div class="top">
             <a class="object-title">{{ device.name }}</a>
           </div>
@@ -69,19 +69,20 @@
 
               <!-- Colour Temperature -->
               <div ng-switch-when="color_temperature" class="color-palette" ng-show="device.states['power']">
+                {{device.states[propertyName]}}
                 <ul>
-                  <li ng-class="{selected: device.states[propertyName] == 400}" ng-click="action.setState(device, propertyName, 400)">5 <span ng-show="device.states[propertyName] == 400">SELECTED</span></li>
-                  <li ng-class="{selected: device.states[propertyName] == 357}" ng-click="action.setState(device, propertyName, 357)">4 <span ng-show="device.states[propertyName] == 357">SELECTED</span></li>
-                  <li ng-class="{selected: device.states[propertyName] == 294}" ng-click="action.setState(device, propertyName, 294)">3 <span ng-show="device.states[propertyName] == 294">SELECTED</span></li>
-                  <li ng-class="{selected: device.states[propertyName] == 200}" ng-click="action.setState(device, propertyName, 200)">2 <span ng-show="device.states[propertyName] == 200">SELECTED</span></li>
-                  <li ng-class="{selected: device.states[propertyName] == 153}" ng-click="action.setState(device, propertyName, 153)">1 <span ng-show="device.states[propertyName] == 153">SELECTED</span></li>
+                  <li ng-class="{selected: device.states[propertyName] == 400}" ng-click="action.setState(device, propertyName, 400); device.states[propertyName] = 400">5 <span ng-show="device.states[propertyName] == 400">SELECTED</span></li>
+                  <li ng-class="{selected: device.states[propertyName] == 357}" ng-click="action.setState(device, propertyName, 357); device.states[propertyName] = 357">4 <span ng-show="device.states[propertyName] == 357">SELECTED</span></li>
+                  <li ng-class="{selected: device.states[propertyName] == 294}" ng-click="action.setState(device, propertyName, 294); device.states[propertyName] = 294">3 <span ng-show="device.states[propertyName] == 294">SELECTED</span></li>
+                  <li ng-class="{selected: device.states[propertyName] == 200}" ng-click="action.setState(device, propertyName, 200); device.states[propertyName] = 200">2 <span ng-show="device.states[propertyName] == 200">SELECTED</span></li>
+                  <li ng-class="{selected: device.states[propertyName] == 153}" ng-click="action.setState(device, propertyName, 153); device.states[propertyName] = 153">1 <span ng-show="device.states[propertyName] == 153">SELECTED</span></li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
 
-      <a class="spaces add-device">
+      <a class="spaces add-device" ng-click="action.goto.addDevice(space)" ng-show="space != undefined">
         <span class="add-device plus">&#43;</span>
       </a>
       </div>

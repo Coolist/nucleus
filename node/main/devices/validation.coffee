@@ -31,5 +31,6 @@ exports.update = (req) ->
 
   sanitized.update.name = req.body.name if req.body.name?
   sanitized.update.activated = validate.toBoolean(req.body.activated) if req.body.activated?
+  sanitized.update.space = req.body.space if req.body.space?
   
   return sanitized

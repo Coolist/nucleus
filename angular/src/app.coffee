@@ -57,7 +57,8 @@ app.config ($routeProvider, $locationProvider) ->
       templateUrl: 'spaces/new/view.html'
     .when '/styleguide',
       templateUrl: 'styleguide/view.html'
-    .when '/devices',
+    .when '/places/:placeId/spaces/:spaceId/devices/add',
+      controller: 'devicesCtrl'
       templateUrl: 'devices/view.html'
     .otherwise
       redirectTo: '/places'

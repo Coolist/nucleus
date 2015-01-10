@@ -5,6 +5,7 @@ redis = require 'redis'
 # Load custom modules
 db = require '../mongodb/connect.coffee'
 db.places = db.db.collection 'places'
+db.spaces = db.db.collection 'spaces'
 db.devices = db.db.collection 'devices'
 db.services = db.db.collection 'services'
 
@@ -25,9 +26,12 @@ exports.readOne = (params) ->
         id: object._id
         name: object.name
         place: object.place
+        space: object.space
         service: object.service
+        type: object.type
         properties: object.properties
         states: object.states
+        activated: object.activated
     else
       throw new Error errors.build 'A device with that ID was not found.', 404
     return ret
@@ -49,9 +53,12 @@ exports.read = (params) ->
         id: item._id
         name: item.name
         place: item.place
+        space: item.space
+        type: item.type
         service: item.service
         properties: item.properties
         states: item.states
+        activated: item.activated
 
     return ret
 
@@ -76,16 +83,30 @@ exports.create = (params) ->
 
 # Update a device
 exports.update = (params) ->
-  db.devices.update
-    _id: params.id
-    place: params.placeId
-  ,
-    { $set: params.update }
-  .then (res) ->
-    if res.ok
-      return true
-    else
-      throw new Error errors.build 'A device with that ID was not found.', 404
+
+  update = () ->
+    db.devices.update
+      _id: params.id
+      place: params.placeId
+    ,
+      { $set: params.update }
+    .then (res) ->
+      if res.ok
+        return true
+      else
+        throw new Error errors.build 'A device with that ID was not found.', 404
+
+  if params.update.space?
+    db.spaces.findOne
+      _id: params.update.space
+      place: params.placeId
+    .then (object) ->
+      if object
+        update()
+      else
+        throw new Error errors.build 'A space with that ID was not found (or you do not have access to it).', 404
+  else
+    update()
 
 # Update a device's state
 exports.updateState = (params) ->

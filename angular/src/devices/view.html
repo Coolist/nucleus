@@ -9,98 +9,46 @@
     <div class="devices list">
 
       <!-- Lights -->
-      <div class="group">
+      <div class="group" ng-show="dLights.length > 0">
         <div class="title"><h3>Lights</h3></div>
-        <div class="item">
+        <div class="item" ng-repeat="device in dLights = (devices | filter: { type: 'light' })">
           <div class="select-device">
-            <input type="checkbox" class="checkbox" />
+            <input type="checkbox" class="checkbox" ng-model="device.selected" />
             <div class="image" data-device-type="Philips Hue"></div>
           </div>
-          <div class="description">Philips Hue</div>
-        </div>
-        <div class="item">
-          <div class="select-device">
-            <input type="checkbox" class="checkbox" />
-            <div class="image" data-device-type="LIFX"></div>
-          </div>
-          <div class="description">LIFX</div>
+          <div class="description">{{ device.name }}</div>
         </div>
       </div>
-      <!-- End Lights -->
 
-      <!-- Thermostats -->
-      <div class="group">
-        <div class="title"><h3>Thermostats</h3></div>
-        <div class="item">
+      <!-- Sensors -->
+      <div class="group" ng-show="dSensors.length > 0">
+        <div class="title"><h3>Sensors</h3></div>
+        <div class="item" ng-repeat="device in dSensors = (devices | filter: { type: 'sensor' })">
           <div class="select-device">
-            <input type="checkbox" class="checkbox" />
-            <div class="image" data-device-type="Honeywell Lyric"></div>
+            <input type="checkbox" class="checkbox" ng-model="device.selected" />
+            <div class="image"></div>
           </div>
-          <div class="description">Honeywell Lyric</div>
-        </div>
-        <div class="item">
-          <div class="select-device">
-            <input type="checkbox" class="checkbox" />
-            <div class="image" data-device-type="Honeywell Lyric"></div>
-          </div>
-          <div class="description">Honeywell Lyric</div>
-        </div>
-        <div class="item">
-          <div class="select-device">
-            <input type="checkbox" class="checkbox" />
-            <div class="image" data-device-type="Honeywell Lyric"></div>
-          </div>
-          <div class="description">Honeywell Lyric</div>
-        </div>
-        <div class="item">
-          <div class="select-device">
-            <input type="checkbox" class="checkbox" />
-            <div class="image" data-device-type="Honeywell Lyric"></div>
-          </div>
-          <div class="description">Honeywell Lyric</div>
-        </div>
-        <div class="item">
-          <div class="select-device">
-            <input type="checkbox" class="checkbox" />
-            <div class="image" data-device-type="Honeywell Lyric"></div>
-          </div>
-          <div class="description">Honeywell Lyric</div>
+          <div class="description">{{ device.name }}</div>
         </div>
       </div>
-      <!-- End Thermostats -->
 
-      <!-- Lights -->
-      <div class="group">
-        <div class="title"><h3>Lights</h3></div>
-        <div class="item">
+      <!-- Switches -->
+      <div class="group" ng-show="dSwitches.length > 0">
+        <div class="title"><h3>Switches</h3></div>
+        <div class="item" ng-repeat="device in dSwitches = (devices | filter: { type: 'switch' })">
           <div class="select-device">
-            <input type="checkbox" class="checkbox" />
-            <div class="image" data-device-type="Philips Hue"></div>
+            <input type="checkbox" class="checkbox" ng-model="device.selected" />
+            <div class="image"></div>
           </div>
-          <div class="description">Philips Hue</div>
-        </div>
-        <div class="item">
-          <div class="select-device">
-            <input type="checkbox" class="checkbox" />
-            <div class="image" data-device-type="LIFX"></div>
-          </div>
-          <div class="description">LIFX</div>
-        </div>
-        <div class="item">
-          <div class="select-device">
-            <input type="checkbox" class="checkbox" />
-            <div class="image" data-device-type="LIFX"></div>
-          </div>
-          <div class="description">LIFX</div>
+          <div class="description">{{ device.name }}</div>
         </div>
       </div>
-      <!-- Lights -->
 
     </div>
     
     <div class="devices input-box">
-      <input type="text" placeholder="Living Room" /><a class="select-space"><i class="icon ion-search"></i></a>
-      <a href="" class="add-device">Add <strong>X</strong> devices to Living Room</a>
+      <!--<input type="text" placeholder="Living Room" /><a class="select-space"><i class="icon ion-search"></i></a>-->
+      <a ng-click="action.add()" class="add-device">Add <strong>{{ selectedDevices }}</strong> device{{ selectedDevices == 1 ? '' : 's' }} to {{ space.name }}</a>
     </div>
     
   </div>
